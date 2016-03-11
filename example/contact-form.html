@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Example of simple form with Formalize Plugin">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Formalize - Simple Email Form</title>
+
+		<!-- JQuery -->
+		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+		<!-- Formalize Plugin -->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="../dist/css/style.min.css" />
+		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+
+		<style type="text/css">
+
+			body {
+				margin: 0px;
+				padding: 0px;
+				background: #eee;
+				color: #666;
+			}
+
+			.main {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			.login {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			@media only screen and (min-width: 1024px) {
+				.main {
+					width: 1024px;
+					margin-top: 50px;
+				}
+			}
+
+			@media only screen and (max-width: 1024px) {
+				.main {
+					width: auto;
+					margin: 10px 10px 10px 10px;
+				}
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<div class="main">
+
+			<h3>Contact Form with Formalize</h3>
+			<hr />
+			<br />
+
+			<form class="formalize">
+				<div class="row">
+					<div class="col s12">
+						<i class="material-icons prefix">personal</i>
+						<input id="name" type="text">
+						<label for="name">Name</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<i class="material-icons prefix">email</i>
+						<input id="email" type="email">
+						<label for="email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<i class="material-icons prefix">email</i>
+						<input id="website" type="text">
+						<label for="website">Website</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s6">
+						<i class="material-icons prefix">phone</i>
+						<input id="telephone" type="tel">
+						<label for="telephone">Telephone</label>
+					</div>
+					<div class="col s6">
+						<i class="material-icons prefix">phone</i>
+						<input id="cellphone" type="tel">
+						<label for="cellphone">Cell Phone</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s3">
+						<input id="facebook" type="text">
+						<label for="facebook">Facebook</label>
+					</div>
+
+					<div class="col s3">
+						<input id="twitter" type="text">
+						<label for="twitter">Twitter</label>
+					</div>
+
+					<div class="col s3">
+						<input id="linkedin" type="text">
+						<label for="linkedin">Linkedin</label>
+					</div>
+
+					<div class="col s3">
+						<input id="github" type="text">
+						<label for="github">Github</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<i class="material-icons prefix">message</i>
+						<textarea id="message"></textarea>
+						<label for="message">Message</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<button type="button" name="send">send
+							<i class="large material-icons right">send</i>
+						</button>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+
+	</body>
+</html>

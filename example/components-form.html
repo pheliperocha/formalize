@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Example of simple form with Formalize Plugin">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Formalize - Simple Email Form</title>
+
+		<!-- JQuery -->
+		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+		<!-- Formalize Plugin -->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="../dist/css/style.min.css" />
+		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+
+		<style type="text/css">
+
+			body {
+				margin: 0px;
+				padding: 0px;
+				background: #eee;
+				color: #666;
+			}
+
+			.main {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			.login {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			@media only screen and (min-width: 1024px) {
+				.main {
+					width: 1024px;
+					margin-top: 50px;
+				}
+			}
+
+			@media only screen and (max-width: 1024px) {
+				.main {
+					width: auto;
+					margin: 10px 10px 10px 10px;
+				}
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<div class="main">
+
+			<h3>Simple Email Form with Formalize</h3>
+			<hr />
+			<br />
+
+			<form class="formalize">
+				<div class="row">
+					<div class="col c6">
+						<input id="inputText1" type="text">
+						<label for="inputText1">Input Text</label>
+					</div>
+
+					<div class="col c6">
+						<input id="inputText2" placeholder="I have a placeholder attribute" type="text">
+						<label for="inputText2">Input Text</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<input disabled value="I am not editable" id="disabled" type="text">
+						<label for="disabled">Disabled</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c6">
+						<span class="frm-btn-prefix">
+							<input type="button" value="Prefix Button" class="prefix">
+						</span>
+
+						<div class="frm-input-affix">
+							<input id="inputPrefixBtn" type="text">
+							<label for="inputPrefixBtn">Input with prefix button</label>
+						</div>
+					</div>
+					<div class="col c6">
+						<div class="frm-input-affix">
+							<input id="inputSuffixBtn" type="text">
+							<label for="inputSuffixBtn">Input with suffix button</label>
+						</div>
+
+						<span class="frm-btn-suffix">
+							<input type="button" value="Suffix Button" class="suffix">
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c6">
+						<i class="material-icons prefix">account_circle</i>
+						<input id="inputPrefixIcon" type="text">
+						<label for="inputPrefixIcon">Input with prefix icon</label>
+					</div>
+					<div class="col c6">
+						<i class="material-icons suffix">account_circle</i>
+						<input id="inputSuffixIcon" type="text">
+						<label for="inputSuffixIcon">Input with suffix icon</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<span class="frm-btn-prefix">
+							<input type="button" value="Prefix Button" class="prefix">
+						</span>
+
+						<div class="frm-input-affix">
+							<i class="material-icons prefix">account_circle</i>
+							<i class="material-icons suffix">account_circle</i>
+							<input id="inputAffix" type="text">
+							<label for="inputAffix">Input with prefix and suffix buttons and icons</label>
+						</div>
+
+						<span class="frm-btn-suffix">
+							<input type="button" value="Suffix Button" class="suffix">
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<div class="frm-input-affix">
+							<i class="material-icons prefix">account_circle</i>
+							<textarea id="textarea" placeholder="This is auto-resize"></textarea>
+							<label for="textarea">Textarea</label>
+						</div>
+
+						<span class="frm-btn-suffix">
+							<input type="button" value="Ok" class="suffix">
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<textarea id="textarea" class="counter"></textarea>
+						<label for="textarea">Textarea with counter</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<textarea id="textarea" maxlength="255"></textarea>
+						<label for="textarea">Textarea with counter and maxlength</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<input id="first_name2" type="number" min="10" max="50" step="5">
+						<label class="active" for="first_name2">Number with max, min and step 5</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<input id="inputText1" type="text" required>
+						<label for="inputText1">Required</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<input id="email" type="email" placeholder="This has a email validation">
+						<label for="email">Email</label>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col c4">
+						<select id="teste2">
+							<option value="option-1" selected>Option 1</option>
+							<option value="option-2" disabled>Disabled Option 2</option>
+							<option value="option-3">Option 3</option>
+							<option value="option-4">Option 4</option>
+						</select>
+						<label>Select</label>
+					</div>
+
+					<div class="col c4">
+						<select id="teste1">
+							<optgroup label="Group 1">
+								<option value="option-1" >Option 1</option>
+								<option value="option-2" selected>Option 2</option>
+							</optgroup>
+							<optgroup label="Group 2">
+								<option value="option-3">Option 3</option>
+								<option value="option-4">Option 4</option>
+							</optgroup>
+						</select>
+						<label>Select with optgroup</label>
+					</div>
+
+					<div class="col c4">
+						<select id="teste" multiple>
+							<optgroup label="Group 1">
+								<option value="option-1" selected>Option 1</option>
+								<option value="option-2">Option 2</option>
+							</optgroup>
+							<optgroup label="Group 2">
+								<option value="option-3">Option 3</option>
+								<option value="option-4">Option 4</option>
+							</optgroup>
+						</select>
+						<label>Multiple seletions</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c4">
+						<div class="row">
+							<input name="group1" type="radio" id="test1" />
+							<label for="test1">Radio 1</label>
+						</div>
+						<div class="row">
+							<input name="group1" type="radio" id="test2" checked />
+							<label for="test2">Radio 2</label>
+						</div>
+						<div class="row">
+							<input name="group1" type="radio" id="test3" disabled />
+							<label for="test3">Disabled Radio</label>
+						</div>
+						<div class="row">
+							<input name="group2" type="radio" id="test3" checked disabled />
+							<label for="test3">Disabled Radio</label>
+						</div>
+					</div>
+					<div class="col c4">
+						<div class="row">
+							<input type="checkbox" id="check1" />
+							<label for="check1">Checkbox 1</label>
+						</div>
+						<div class="row">
+							<input type="checkbox" id="check2" checked="checked" />
+							<label for="check2">Checkbox 2</label>
+						</div>
+						<div class="row">
+							<input type="checkbox" id="check3" disabled />
+							<label for="check3">Disabled Checkbox</label>
+						</div>
+						<div class="row">
+							<input type="checkbox" id="check4" checked="checked" disabled />
+							<label for="check4">Disabled and checked</label>
+						</div>
+					</div>
+
+					<div class="col c4">
+						<div class="row switch">
+							<label>
+								Off
+								<input type="checkbox">
+								<span class="lever"></span>
+								On
+							</label>
+						</div>
+
+						<div class="row switch">
+							<!-- Disabled Switch -->
+							<label>
+								Off
+								<input type="checkbox" checked>
+								<span class="lever"></span>
+								On
+							</label>
+						</div>
+
+						<div class="row switch">
+							<!-- Disabled Switch -->
+							<label>
+								Off
+								<input disabled type="checkbox">
+								<span class="lever"></span>
+								On
+							</label>
+						</div>
+
+						<div class="row switch">
+							<!-- Disabled Switch -->
+							<label>
+								Off
+								<input disabled type="checkbox" checked>
+								<span class="lever"></span>
+								On
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<div class="btn">
+							<span>File</span>
+							<input type="file" data-placeholder="Upload one file" required >
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<div class="btn">
+							<span>File</span>
+							<input type="file" multiple data-placeholder="Upload one or more files" required>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<input type="range" id="range" min="0" max="100">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c3">
+						<button type="button" name="action">Submit
+							<i class="large material-icons right">send</i>
+						</button>
+					</div>
+					<div class="col c3">
+						<button type="submit" name="action">Submit
+							<i class="material-icons left">send</i>
+						</button>
+					</div>
+					<div class="col c3">
+						<input type="button" value="Submit">
+					</div>
+					<div class="col c3">
+						<input class="btn disabled" disabled type="submit" value="Submit">
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+
+	</body>
+</html>

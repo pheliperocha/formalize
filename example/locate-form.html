@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Example of simple form with Formalize Plugin">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Formalize - Simple Email Form</title>
+
+		<!-- JQuery -->
+		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+		<!-- Formalize Plugin -->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="../dist/css/style.min.css" />
+		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+
+		<style type="text/css">
+
+			body {
+				margin: 0px;
+				padding: 0px;
+				background: #eee;
+				color: #666;
+			}
+
+			.main {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			.login {
+				background: #fff;
+				height: auto;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			}
+
+			@media only screen and (min-width: 1024px) {
+				.main {
+					width: 1024px;
+					margin-top: 50px;
+				}
+			}
+
+			@media only screen and (max-width: 1024px) {
+				.main {
+					width: auto;
+					margin: 10px 10px 10px 10px;
+				}
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<div class="main">
+
+			<h3>Locate Form with Formalize</h3>
+			<hr />
+			<br />
+
+			<form class="formalize">
+				<div class="row">
+					<div class="3">
+						<button type="button" name="find_locate" class="fr-geolocation" data-inputs="['#postal', '#address', '#addressnumber','#neighborhood', '#country', '#state', '#city', '#lat', '#lng', '#map-canvas' ]">
+							<i class="material-icons">near_me</i>
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c6">
+						<div class="frm-input-affix">
+							<input id="postal" type="text">
+							<label for="postal">Postal Code</label>
+						</div>
+
+						<span class="frm-btn-suffix">
+							<button type="button" name="auto_complete" class="fr-autoComplete" data-reference="postal" data-inputs="['#address', '#addressnumber','#neighborhood', '#country', '#state', '#city', '#lat', '#lng', '#map-canvas' ]">
+								<i class="material-icons">search</i>
+							</button>
+						</span>
+					</div>
+					<div class="col c2">
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col c10">
+						<input id="address" type="text">
+						<label for="address">Address</label>
+					</div>
+					<div class="col c2">
+						<input id="addressnumber" type="number">
+						<label for="addressnumber">Number</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c3">
+						<input id="neighborhood" type="text">
+						<label for="neighborhood">Neighborhood</label>
+					</div>
+					<div class="col c2">
+						<input id="complement" type="text">
+						<label for="complement">Complement</label>
+					</div>
+					<div class="col c3">
+						<select id="country">
+							<option value="" disabled selected>Choose your country</option>
+							<option value="1">Country 1</option>
+							<option value="2">Country 2</option>
+							<option value="3">Country 3</option>
+						</select>
+						<label>Country</label>
+					</div>
+					<div class="col c2">
+						<select id="state">
+							<option value="" disabled selected>Choose your state</option>
+							<option value="1">State 1</option>
+							<option value="2">State 2</option>
+							<option value="3">State 3</option>
+						</select>
+						<label>State</label>
+					</div>
+					<div class="col c2">
+						<select id="city">
+							<option value="" disabled selected>Choose your city</option>
+							<option value="1">City 1</option>
+							<option value="2">City 2</option>
+							<option value="3">City 3</option>
+						</select>
+						<label>City</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c2">
+						<input id="lat" type="text">
+						<label for="lat">Latitude</label>
+					</div>
+					<div class="col c2">
+						<input id="lng" type="text">
+						<label for="lng">Longitude</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c12">
+						<div id="map-canvas" class="fr-mapCanvas"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col c6">
+						<input type="button" value="Save" />
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+
+	</body>
+</html>
