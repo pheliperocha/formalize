@@ -1,0 +1,87 @@
+// shared styles
+form.formalize {
+	.btn,
+	button,
+	input[type="button"],
+	input[type="submit"] {
+		border: $button-border;
+		border-radius: $button-radius;
+		display: inline-block;
+		height: $button-height;
+		line-height: $button-height;
+		outline: 0;
+		padding: $button-padding;
+		text-transform: uppercase;
+		vertical-align: middle;
+		// Gets rid of tap active state
+		-webkit-tap-highlight-color: transparent;
+		text-decoration: none;
+		color: $button-raised-color;
+		background-color: $button-raised-background;
+		text-align: center;
+		letter-spacing: .5px;
+		@extend .z-depth-1;
+		transition: .2s ease-out;
+		cursor: pointer;
+		float: left;
+
+		&:hover {
+			background-color: $button-raised-background-hover;
+			@extend .z-depth-1-half;
+		}
+
+		i {
+			font-size: $button-font-size;
+			line-height: $button-height !important;
+		}
+	}
+
+	.btn:not(:last-child),
+	button:not(:last-child),
+	input[type="button"]:not(:last-child),
+	input[type="submit"]:not(:last-child) {
+		margin-right: 10px;
+	}
+
+	// Disabled shared style
+	.btn.disabled,
+	button.disabled,
+	input[type="button"].disabled,
+	input[type="submit"].disabled {
+		background-color: $button-disabled-background !important;
+		box-shadow: none;
+		color: $button-disabled-color !important;
+		cursor: default;
+
+		* {
+			pointer-events: none;
+		}
+
+		&:hover {
+			background-color: $button-disabled-background !important;
+			color: $button-disabled-color !important;
+		}
+	}
+
+	.frm-btn-prefix {
+		width: 1%;
+		padding-top: 10px;
+		display: table-cell;
+
+		input[type="button"], input[type="submit"], button {
+			margin-right: 10px;
+			padding: 1px 6px;
+		}
+	}
+
+	.frm-btn-suffix {
+		width: 1%;
+		padding-top: 10px;
+		display: table-cell;
+
+		input[type="button"], input[type="submit"], button {
+			margin-left: 10px;
+			padding: 1px 6px;
+		}
+	}
+}
