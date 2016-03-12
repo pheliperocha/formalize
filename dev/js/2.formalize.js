@@ -1,47 +1,13 @@
+/*jslint browser: true*/
+/*global $, jQuery, alert*/
+
 (function ($) {
      "use strict";
      $.fn.formalize = function () {
 
-          // Validations of values
-          window.validate_field = function (object) {
-               var hasRequired, hasMaxLenght, hasMinLenght, type, val, regex;
-
-               hasRequired = object.attr("required");
-               hasMaxLenght = parseInt((object.attr("maxlength") || object.attr("max")), 10);
-               hasMinLenght = parseInt(object.attr("min"), 10);
-               type = object.attr("type");
-               val = object.val();
-
-               if (hasRequired) {
-                    if (val == "") {
-                         object.removeClass('valid');
-                         object.addClass('invalid');
-                         object.parent().find(".tagInfo").html("Required field!");
-
-                         return false;
-                    } else {
-                         object.removeClass('invalid');
-                         object.addClass('valid');
-                         object.parent().find(".tagInfo").html("");
-                    }
-               }
-
-               if (type == "email") {
-                    regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                    if (regex.test(val)) {
-                         object.removeClass('invalid');
-                         object.addClass('valid');
-                    } else {
-                         object.removeClass('valid');
-                         object.addClass('invalid');
-                         object.parent().find(".tagInfo").html("Invalid email!");
-                    }
-               }
-          };
-
           this.each(function () {
 
-               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix;
+               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix, validate_field, validate_keypress, radio_checkbox, hiddenDiv, text_area_selector, range_type, range_mousedown, left;
 
                thisForm = $(this);
                input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea';
@@ -56,8 +22,8 @@
                });
 
                /*******************************
-            * Add prefix, affix and suffix *
-            *******************************/
+               * Add prefix, affix and suffix *
+               *******************************/
 
                wrap_prefix = "input.prefix ~ input, button.prefix ~ input";
                btn_prefix = "input.prefix, button.prefix";
@@ -162,16 +128,16 @@
                     $this = $(this);
                     type = $(this).attr("type");
                     maxLength = (($this.attr("maxlength") >= 0 || $this.attr("max") >= 0) ? ($this.attr("maxlength") || $this.attr("max")) : "*");
-                    minLength = (($this.attr("minlength") >= 0 || $this.attr("min") >= 0) ? ($this.attr("minlength") || $this.attr("min")) : "0");
+                    minLength = (($this.attr("minlength") >= 0 || $this.attr("min") >= 0) ? ($this.attr("minlength") || $this.attr("min")) : 0);
                     val = $this.val().length;
 
                     // When has only the class frz-counter
-                    if (minLength == 0 && maxLength == "*") {
+                    if (minLength === 0 && maxLength === "*") {
 
                          $this.parent().find(".tagCount").html(val);
 
                          // When has only the attribute minLength
-                    } else if (minLength > 0 && maxLength == "*") {
+                    } else if (minLength > 0 && maxLength === "*") {
 
                          if (val < minLength) {
 
@@ -184,7 +150,7 @@
                          }
 
                          // When has only the attribute maxLength
-                    } else if (minLength == 0 && maxLength >= 0) {
+                    } else if (minLength === 0 && maxLength >= 0) {
 
                          $this.parent().find(".tagCount").html(val + " / " + maxLength);
 
@@ -207,8 +173,8 @@
                });
 
                /*******************************
-            * HTML DOM FORM RESET handling *
-            *******************************/
+               * HTML DOM FORM RESET handling *
+               *******************************/
 
                $(this).on('reset', function (e) {
                     var formReset = $(e.target);
@@ -230,8 +196,8 @@
 
 
                /*************************************
-            *  Add active when element has focus *
-            *************************************/
+               *  Add active when element has focus *
+               *************************************/
                $(this).on('focus', input_selector, function () {
                     $(this).siblings('label, i').addClass('active');
                });
@@ -248,9 +214,9 @@
                });
 
                /**********************************
-            *  Radio and Checkbox focus class *
-            **********************************/
-               var radio_checkbox = 'input[type=radio], input[type=checkbox]';
+               *  Radio and Checkbox focus class *
+               **********************************/
+               radio_checkbox = 'input[type=radio], input[type=checkbox]';
                $(this).on('keyup.radio', radio_checkbox, function (e) {
                     // TAB, check if tabbing to radio or checkbox.
                     if (e.which === 9) {
@@ -264,23 +230,24 @@
                });
 
                /************************
-            *  TextArea Auto Resize *
-            ************************/
+               *  TextArea Auto Resize *
+               ************************/
 
                $(this).find("textarea").addClass("formalize-textarea");
 
-               var hiddenDiv = $('.hiddendiv').first();
+               hiddenDiv = $('.hiddendiv').first();
                if (!hiddenDiv.length) {
                     hiddenDiv = $('<div class="hiddendiv common"></div>');
                     $(this).append(hiddenDiv);
                }
-               var text_area_selector = '.formalize-textarea';
+               text_area_selector = '.formalize-textarea';
 
                function textareaAutoResize($textarea) {
                     // Set font properties of hiddenDiv
-
-                    var fontFamily = $textarea.css('font-family');
-                    var fontSize = $textarea.css('font-size');
+                    var fontFamily, fontSize, content;
+                    
+                    fontFamily = $textarea.css('font-family');
+                    fontSize = $textarea.css('font-size');
 
                     if (fontSize) { hiddenDiv.css('font-size', fontSize); }
                     if (fontFamily) { hiddenDiv.css('font-family', fontFamily); }
@@ -291,7 +258,7 @@
                     }
 
                     hiddenDiv.text($textarea.val() + '\n');
-                    var content = hiddenDiv.html().replace(/\n/g, '<br>');
+                    content = hiddenDiv.html().replace(/\n/g, '<br>');
                     hiddenDiv.html(content);
 
 
@@ -319,29 +286,34 @@
                });
 
                /****************
-            *  File Input  *
-            ****************/
+               *  File Input  *
+               ****************/
 
                $(this).find("input[type=\"file\"]").each(function () {
-                    var placeholder = $(this).attr("placeholder");
-                    var multiple = $(this).attr("multiple");
+                    var placeholder, multiple, path_wrapper;
+                    
+                    placeholder = ($(this).attr("placeholder") || $(this).data("placeholder"));
+                    multiple = $(this).attr("multiple");
 
-                    if (placeholder == null && multiple == null) {
-                         placeholder = "Enviar arquivo";
-                    } else if (placeholder == null && multiple) {
-                         placeholder = "Enviar um ou mais arquivos";
+                    if (placeholder === undefined && multiple === undefined) {
+                         placeholder = "Upload file";
+                    } else if (placeholder === undefined && multiple) {
+                         placeholder = "Upload one or more files";
                     }
 
-                    var path_wrapper = "<div class=\"file-path-wrapper\"><input class=\"file-path validate\" type=\"text\" placeholder=\"" + placeholder + "\"></div>";
+                    path_wrapper = "<div class=\"file-path-wrapper\"><input class=\"file-path validate\" type=\"text\" placeholder=\"" + placeholder + "\"></div>";
                     $(this).parent().after(path_wrapper);
                });
 
                $(this).on('change', 'input[type="file"]', function () {
-                    var col = $(this).closest('.col');
-                    var path_input = col.find('input.file-path');
-                    var files      = $(this)[0].files;
-                    var file_names = [];
-                    for (var i = 0; i < files.length; i++) {
+                    var col, path_input, files, file_names, i;
+                    
+                    col = $(this).closest('.col');
+                    path_input = col.find('input.file-path');
+                    files      = $(this)[0].files;
+                    file_names = [];
+                    
+                    for (i = 0; i < files.length; i += 1) {
                          file_names.push(files[i].name);
                     }
                     path_input.val(file_names.join(", "));
@@ -352,24 +324,24 @@
                *  Range Input  *
                ****************/
 
-               var range_type = 'input[type=range]';
-               var range_mousedown = false;
-               var left;
+               range_type = 'input[type=range]';
+               range_mousedown = false;
 
                $(this).find(range_type).each(function () {
                     var thumb = $('<span class="thumb"><span class="value"></span></span>');
                     $(this).after(thumb);
                });
 
-               $(this).on('change', range_type, function(e) {
+               $(this).on('change', range_type, function (e) {
                     var thumb = $(this).siblings('.thumb');
                     thumb.find('.value').html($(this).val());
                });
 
-               $(this).on('input mousedown touchstart', range_type, function(e) {
-
-                    var thumb = $(this).siblings('.thumb');
-                    var width = $(this).outerWidth();
+               $(this).on('input mousedown touchstart', range_type, function (e) {
+                    var thumb, width;
+                    
+                    thumb = $(this).siblings('.thumb');
+                    width = $(this).outerWidth();
 
                     // If thumb indicator does not exist yet, create it
                     if (thumb.length <= 0) {
@@ -388,20 +360,18 @@
                               width: 30,
                               height: 30,
                               top: -28
-                         }, 300, function() {});
+                         }, 300, function () {});
                     }
 
                     if (e.type !== 'input') {
-                         if(e.pageX === undefined || e.pageX === null){//mobile
+                         if (e.pageX === undefined || e.pageX === null) {//mobile
                               left = e.originalEvent.touches[0].pageX - $(this).offset().left;
-                         }
-                         else{ // desktop
+                         } else { // desktop
                               left = e.pageX - $(this).offset().left;
                          }
                          if (left < 0) {
                               left = 0;
-                         }
-                         else if (left > width) {
+                         } else if (left > width) {
                               left = width;
                          }
                          thumb.addClass('active').css('left', left);
@@ -410,34 +380,35 @@
                     thumb.find('.value').html($(this).val());
                });
 
-               $(this).on('mouseup touchend',range_type,function() {				
+               $(this).on('mouseup touchend', range_type, function () {
                     range_mousedown = false;
                     $(this).removeClass('active');
                });
 
-               $(this).on('mousemove touchmove', range_type, function(e) {
-                    var thumb = $(this).siblings('.thumb');
-                    var left;
+               $(this).on('mousemove touchmove', range_type, function (e) {
+                    var thumb, left, width;
+                    
+                    thumb = $(this).siblings('.thumb');
+                    
                     if (range_mousedown) {
                          if (!thumb.hasClass('active')) {
                               thumb.animate({
                                    width: 30,
                                    height: 30,
                                    top: -28
-                              }, 300, function() {});
+                              }, 300, function () {});
                          }
                          if (e.pageX === undefined || e.pageX === null) { //mobile
                               left = e.originalEvent.touches[0].pageX - $(this).offset().left;
-                         }
-                         else{ // desktop
+                         } else { // desktop
                               left = e.pageX - $(this).offset().left;
                          }
-                         var width = $(this).outerWidth();
+                         
+                         width = $(this).outerWidth();
 
                          if (left < 0) {
                               left = 0;
-                         }
-                         else if (left > width) {
+                         } else if (left > width) {
                               left = width;
                          }
                          thumb.addClass('active').css('left', left);
@@ -445,7 +416,7 @@
                     }
                });
 
-               $(this).on('mouseout touchleave', range_type, function() {
+               $(this).on('mouseout touchleave', range_type, function () {
                     if (!range_mousedown) {
                          var thumb = $(this).siblings('.thumb');
 
@@ -454,21 +425,214 @@
                                    width: 0,
                                    height: 0,
                                    top: 10
-                              }, 300, function() {});
+                              }, 300, function () {});
                          }
                          thumb.removeClass('active');
                     }
                });
 
+               /***********
+               *  Select  *
+               ***********/
+
+               // Create the elements
+               $(this).find("select").each(function () {
+                    var $this, isMultiple, content, currentSelected, parentB;
+                    
+                    $this = $(this);
+                    isMultiple = $(this).attr("multiple");
+
+                    if (!isMultiple) {
+                         content = "<ul class=\"dropdown-content\">";
+                         currentSelected = $this.find(':selected').text();
+                    } else {
+                         content = "<ul class=\"dropdown-content multiple-select-dropdown\">";
+
+                         currentSelected = "";
+                         $this.find("option:checked").each(function () {
+                              currentSelected += $(this).text() + ", ";
+                         });
+
+                         currentSelected = currentSelected.replace(/,\s*$/, "");
+
+                    }
+
+                    $this.wrap("<div class=\"select-wrapper\">");
+                    $this.before("<span class=\"caret\">▼</span>");
+                    $this.before("<input type=\"text\" class=\"select-dropdown\" readonly=\"true\" value=\"" + currentSelected + "\">");
+
+                    parentB = $this;
+                    $this.find("option").each(function () {
+                         var $this, parentA, isSelected, disabled, liSelect, checkSelect;
+                         
+                         $this = $(this);
+                         parentA = $this.parent();
+                         isSelected = $this.is(":selected");
+
+                         if (!parentB.is(parentA)) {
+                              content += "<li class=\"optgroup\"><span>" + parentA.attr("label") + "</span></li>";
+                         }
+
+                         parentB = parentA;
+
+                         disabled = "";
+                         if ($this.attr("disabled")) {
+                              disabled = "disabled";
+                         }
+
+                         liSelect = "";
+                         checkSelect = "";
+                         if (isSelected) {
+                              liSelect = "active";
+                              checkSelect = "checked";
+                         }
+
+                         if (!isMultiple) {
+                              content += "<li data-value=\"" + $this.val() + "\" class=\"" + disabled + "\"><span>" + $this.text() + "</span></li>";
+                         } else {
+                              content += "<li data-value=\"" + $this.val() + "\" class=\" " + disabled + " " + liSelect + " \"><span><input type=\"checkbox\" " + checkSelect + " " + disabled + "><label></label>" + $this.text() + "</span></li>";
+                         }
+                    });
+
+                    content += "</ul>";
+
+                    $this.before(content);
+               });
+
+               // When click on select
+               $(this).on("click", ".select-dropdown", function () {
+                    var $this, width, dropdown;
+                    
+                    $this = $(this);
+                    width = $this.css("width");
+                    dropdown = $this.next(".dropdown-content");
+
+                    dropdown.css("top", "0px");
+                    dropdown.css("width", width);
+                    dropdown.slideToggle();
+
+                    if (dropdown.hasClass("actived")) {
+                         dropdown.removeClass("actived");
+                    } else {
+                         dropdown.addClass("actived");
+                    }
+               });
+
+               // When click in one valid option, except when its a multiple select
+               $(this).on("click", ".dropdown-content:not(.multiple-select-dropdown) li:not(.optgroup, .disabled)", function () {
+                    var $this, text, value, parent;
+                    
+                    $this = $(this);
+                    text = $this.text();
+                    value = $this.attr("data-value");
+                    parent = $this.parent();
+                    
+                    parent.parent().find("select").val(value);
+                    parent.prev(".select-dropdown").val(text);
+
+                    parent.slideToggle();
+
+                    if (parent.hasClass("actived")) {
+                         parent.removeClass("actived");
+                    } else {
+                         parent.addClass("actived");
+                    }
+               });
+
+               // When click in one valid option when its a multiple select
+               $(this).on("click", ".multiple-select-dropdown li:not(.optgroup, .disabled)", function () {
+                    var $this, value, checkbox, ulParent, selectWrapper, optionsTxt;
+                    
+                    $this = $(this);
+                    value = $this.attr("data-value");
+                    checkbox = $this.find("input[type=\"checkbox\"]");
+                    ulParent = $this.parent();
+                    selectWrapper = ulParent.parent();
+
+                    if ($this.hasClass("active")) {
+                         $this.removeClass("active");
+                         checkbox.prop("checked", false);
+                         selectWrapper.find("select option[value='" + value + "']").prop("selected", false);
+                    } else {
+                         $this.addClass("active");
+                         checkbox.prop("checked", true);
+                         selectWrapper.find("select option[value='" + value + "']").prop("selected", true);
+                    }
+
+                    optionsTxt = "";
+                    selectWrapper.find("select option:checked").each(function () {
+                         optionsTxt += $(this).text() + ", ";
+                    });
+
+                    optionsTxt = optionsTxt.replace(/,\s*$/, "");
+
+                    ulParent.prev(".select-dropdown").val(optionsTxt);
+               });
+
+               // When click outside the select
+               $(document).on("click", function (event) {
+                    if (!$(event.target).closest('.dropdown-content').length && !$(event.target).is('.dropdown-content').length && !$(event.target).is('.select-dropdown')) {
+
+                         var dropdownContent = thisForm.find(".dropdown-content.actived");
+
+                         dropdownContent.slideToggle();
+
+                         if (dropdownContent.hasClass("actived")) {
+                              dropdownContent.removeClass("actived");
+                         } else {
+                              dropdownContent.addClass("actived");
+                         }
+                    }
+               });
+
+               // Validations of values
+               validate_field = function (object) {
+                    var hasRequired, hasMaxLenght, hasMinLenght, type, val, regex;
+
+                    hasRequired = object.attr("required");
+                    hasMaxLenght = parseInt((object.attr("maxlength") || object.attr("max")), 10);
+                    hasMinLenght = parseInt(object.attr("min"), 10);
+                    type = object.attr("type");
+                    val = object.val();
+
+                    if (hasRequired) {
+                         if (val === "") {
+                              object.removeClass('valid');
+                              object.addClass('invalid');
+                              object.parent().find(".tagInfo").html("Required field!");
+
+                              return false;
+                         } else {
+                              object.removeClass('invalid');
+                              object.addClass('valid');
+                              object.parent().find(".tagInfo").html("");
+                         }
+                    }
+
+                    if (type === "email") {
+                         regex = /^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
+                         if (regex.test(val)) {
+                              object.removeClass('invalid');
+                              object.addClass('valid');
+                              object.parent().find(".tagInfo").html("");
+                         } else {
+                              object.removeClass('valid');
+                              object.addClass('invalid');
+                              object.parent().find(".tagInfo").html("Invalid email!");
+                         }
+                    }
+               };
+
                // Validations on keypress event
-               window.validate_keypress = function(object) {
+               validate_keypress = function (object) {
+                    var lenght, maxLength, minLength;
 
-                    var lenght = object.val().length;
+                    lenght = object.val().length;
 
-                    var maxLength = ((object.attr("maxlength") >= 0 || object.attr("max") >= 0) ? (object.attr("maxlength") || object.attr("max")) : "*");
-                    var minLength = ((object.attr("minlength") >= 0 || object.attr("min") >= 0) ? (object.attr("minlength") || object.attr("min")) : "0");
+                    maxLength = ((object.attr("maxlength") >= 0 || object.attr("max") >= 0) ? (object.attr("maxlength") || object.attr("max")) : "*");
+                    minLength = ((object.attr("minlength") >= 0 || object.attr("min") >= 0) ? (object.attr("minlength") || object.attr("min")) : "0");
 
-                    if (maxLength != "*" || minLength > "0") {
+                    if (maxLength !== "*" || minLength > "0") {
 
                          if (lenght < minLength) {
 
@@ -493,160 +657,14 @@
 
                };
 
-               /***********
-		    *  Select  *
-			***********/
-
-               // Create the elements
-               $(this).find("select").each(function() {
-
-                    var $this = $(this);
-                    var isMultiple = $(this).attr("multiple");
-
-                    if (!isMultiple) {
-                         var content = "<ul class=\"dropdown-content\">";
-                         var currentSelected = $this.find(':selected').text();
-                    } else {
-                         var content = "<ul class=\"dropdown-content multiple-select-dropdown\">";
-
-                         var currentSelected = "";
-                         $this.find("option:checked").each(function() {
-                              currentSelected += $(this).text()+", ";
-                         });
-
-                         currentSelected = currentSelected.replace(/,\s*$/, "");
-
-                    }
-
-                    $this.wrap( "<div class=\"select-wrapper\">" );
-                    $this.before("<span class=\"caret\">▼</span>");
-                    $this.before("<input type=\"text\" class=\"select-dropdown\" readonly=\"true\" value=\""+currentSelected+"\">");
-
-                    var parentB = $this;
-                    $this.find("option").each(function() {
-                         var $this = $(this);
-                         var parentA = $this.parent();
-                         var isSelected = $this.is(":selected");
-
-                         if (!parentB.is(parentA)) {
-                              content += "<li class=\"optgroup\"><span>"+parentA.attr("label")+"</span></li>";
-                         }
-
-                         parentB = parentA;
-
-                         var disabled = "";
-                         if ($this.attr("disabled")) {
-                              disabled = "disabled";
-                         }
-
-                         var liSelect = "";
-                         var checkSelect = "";
-                         if (isSelected) {
-                              liSelect = "active";
-                              checkSelect = "checked";
-                         }
-
-                         if (!isMultiple) {
-                              content += "<li data-value=\""+$this.val()+"\" class=\""+disabled+"\"><span>"+$this.text()+"</span></li>";
-                         } else {
-                              content += "<li data-value=\""+$this.val()+"\" class=\" "+disabled+" "+liSelect+" \"><span><input type=\"checkbox\" "+checkSelect+" "+disabled+"><label></label>"+$this.text()+"</span></li>";
-                         }
-                    });
-
-                    content += "</ul>";
-
-                    $this.before(content);
-               });
-
-               // When click on select
-               $(this).on("click", ".select-dropdown", function() {
-                    var $this = $(this);
-                    var width = $this.css("width");
-                    var dropdown = $this.next(".dropdown-content");
-
-                    dropdown.css("top", "0px");
-                    dropdown.css("width", width);
-                    dropdown.slideToggle();
-
-                    if (dropdown.hasClass("actived")) {
-                         dropdown.removeClass("actived");
-                    } else {
-                         dropdown.addClass("actived");					
-                    }
-               });
-
-               // When click in one valid option, except when its a multiple select
-               $(this).on("click", ".dropdown-content:not(.multiple-select-dropdown) li:not(.optgroup, .disabled)", function() {
-                    var $this = $(this);
-                    var text = $this.text();
-                    var value = $this.attr("data-value");
-                    var parent = $this.parent();
-                    parent.parent().find("select").val(value);
-                    parent.prev(".select-dropdown").val(text);
-
-                    parent.slideToggle();
-
-                    if (parent.hasClass("actived")) {
-                         parent.removeClass("actived");
-                    } else {
-                         parent.addClass("actived");					
-                    }
-               });
-
-               // When click in one valid option when its a multiple select
-               $(this).on("click", ".multiple-select-dropdown li:not(.optgroup, .disabled)", function() {
-                    var $this = $(this);
-                    var value = $this.attr("data-value");
-                    var checkbox = $this.find("input[type=\"checkbox\"]");
-                    var ulParent = $this.parent();
-                    var selectWrapper = ulParent.parent();
-
-                    if ($this.hasClass("active")) {
-                         $this.removeClass("active");
-                         checkbox.prop("checked",false);
-                         selectWrapper.find("select option[value='"+ value +"']").prop("selected", false);
-                    } else {
-                         $this.addClass("active");
-                         checkbox.prop("checked",true);
-                         selectWrapper.find("select option[value='"+ value +"']").prop("selected", true);
-                    }
-
-                    var optionsTxt = "";
-                    selectWrapper.find("select option:checked").each(function() {
-                         optionsTxt += $(this).text()+", ";
-                    });
-
-                    optionsTxt = optionsTxt.replace(/,\s*$/, "");
-
-                    ulParent.prev(".select-dropdown").val(optionsTxt);
-               });
-
-               // When click outside the select
-               $(document).on("click", function(event) {
-                    if(!$(event.target).closest('.dropdown-content').length &&
-                       !$(event.target).is('.dropdown-content').length &&
-                       !$(event.target).is('.select-dropdown')) {
-
-                         var dropdownContent = thisForm.find(".dropdown-content.actived");
-
-                         dropdownContent.slideToggle();
-
-                         if (dropdownContent.hasClass("actived")) {
-                              dropdownContent.removeClass("actived");
-                         } else {
-                              dropdownContent.addClass("actived");					
-                         }
-                    }
-               });
-
           });
 
-     }
+     };
 
 }(jQuery));
 
-$( document ).ready(function() {
-
+$(document).ready(function () {
+     "use strict";
      $(".formalize").formalize();
 
 });

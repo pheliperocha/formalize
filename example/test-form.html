@@ -84,21 +84,21 @@
 				<div class="row">
 					<div class="col c4">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="text" />
-						<label for="inp_1">Input 1</label>
+						<input id="inp_1" type="text" class="frz-counter" />
+						<label for="inp_1">Counter</label>
 					</div>
 
 					<div class="col c4">
 						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="text">
-						<label for="inp_2">Input 2</label>
+						<input id="inp_2" type="text" minlength="10" />
+						<label for="inp_2">MinL</label>
 					</div>
 
 					<div class="col c4">
 						<i class="material-icons prefix">account_circle</i>
 						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="text">
-						<label for="inp_3">Input 3</label>
+						<input id="inp_3" type="text" maxlength="20" />
+						<label for="inp_3">MaxL</label>
 					</div>
 				</div>
 
@@ -107,15 +107,15 @@
 
 						<input type="button" value="Ok" class="prefix">
 
-						<input id="inp_4" type="text" minlength="10" maxlength="20">
-						<label for="inp_4">Input 4</label>
+						<input id="inp_4" type="text" minlength="30" maxlength="40">
+						<label for="inp_4">MinL and MaxL</label>
 
 					</div>
 
 					<div class="col c4">
 
-						<input id="inp_5" type="text">
-						<label for="inp_5">Input 5</label>
+						<input id="inp_5" type="text" min="3" />
+						<label for="inp_5">Min</label>
 
 						<input type="button" value="Ok" class="suffix">
 
@@ -125,8 +125,8 @@
 
 						<input type="button" value="Ok" class="prefix">
 
-						<input id="inp_6" type="number" minlength="10" maxlength="20">
-						<label for="inp_6">Input 6</label>
+						<input id="inp_6" type="text" max="5" />
+						<label for="inp_6">Max</label>
 
 						<input type="button" value="Ok" class="suffix">
 
@@ -137,11 +137,11 @@
 				<div class="row">
 				
 					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
+						<input type="button" value="Ok" class="prefix" min="12" max="19" />
 						
 						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="text">
-						<label for="inp_7">Input 7</label>
+						<input id="inp_7" type="text" min="7" max="11">
+						<label for="inp_7">Min and Max</label>
 					</div>
 				
 					<div class="col c4">
