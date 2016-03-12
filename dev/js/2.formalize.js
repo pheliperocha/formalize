@@ -245,7 +245,7 @@
                function textareaAutoResize($textarea) {
                     // Set font properties of hiddenDiv
                     var fontFamily, fontSize, content;
-                    
+
                     fontFamily = $textarea.css('font-family');
                     fontSize = $textarea.css('font-size');
 
@@ -291,7 +291,7 @@
 
                $(this).find("input[type=\"file\"]").each(function () {
                     var placeholder, multiple, path_wrapper;
-                    
+
                     placeholder = ($(this).attr("placeholder") || $(this).data("placeholder"));
                     multiple = $(this).attr("multiple");
 
@@ -307,12 +307,12 @@
 
                $(this).on('change', 'input[type="file"]', function () {
                     var col, path_input, files, file_names, i;
-                    
+
                     col = $(this).closest('.col');
                     path_input = col.find('input.file-path');
                     files      = $(this)[0].files;
                     file_names = [];
-                    
+
                     for (i = 0; i < files.length; i += 1) {
                          file_names.push(files[i].name);
                     }
@@ -339,7 +339,7 @@
 
                $(this).on('input mousedown touchstart', range_type, function (e) {
                     var thumb, width;
-                    
+
                     thumb = $(this).siblings('.thumb');
                     width = $(this).outerWidth();
 
@@ -387,9 +387,9 @@
 
                $(this).on('mousemove touchmove', range_type, function (e) {
                     var thumb, left, width;
-                    
+
                     thumb = $(this).siblings('.thumb');
-                    
+
                     if (range_mousedown) {
                          if (!thumb.hasClass('active')) {
                               thumb.animate({
@@ -403,7 +403,7 @@
                          } else { // desktop
                               left = e.pageX - $(this).offset().left;
                          }
-                         
+
                          width = $(this).outerWidth();
 
                          if (left < 0) {
@@ -438,7 +438,7 @@
                // Create the elements
                $(this).find("select").each(function () {
                     var $this, isMultiple, content, currentSelected, parentB;
-                    
+
                     $this = $(this);
                     isMultiple = $(this).attr("multiple");
 
@@ -464,7 +464,7 @@
                     parentB = $this;
                     $this.find("option").each(function () {
                          var $this, parentA, isSelected, disabled, liSelect, checkSelect;
-                         
+
                          $this = $(this);
                          parentA = $this.parent();
                          isSelected = $this.is(":selected");
@@ -502,7 +502,7 @@
                // When click on select
                $(this).on("click", ".select-dropdown", function () {
                     var $this, width, dropdown;
-                    
+
                     $this = $(this);
                     width = $this.css("width");
                     dropdown = $this.next(".dropdown-content");
@@ -521,12 +521,12 @@
                // When click in one valid option, except when its a multiple select
                $(this).on("click", ".dropdown-content:not(.multiple-select-dropdown) li:not(.optgroup, .disabled)", function () {
                     var $this, text, value, parent;
-                    
+
                     $this = $(this);
                     text = $this.text();
                     value = $this.attr("data-value");
                     parent = $this.parent();
-                    
+
                     parent.parent().find("select").val(value);
                     parent.prev(".select-dropdown").val(text);
 
@@ -542,7 +542,7 @@
                // When click in one valid option when its a multiple select
                $(this).on("click", ".multiple-select-dropdown li:not(.optgroup, .disabled)", function () {
                     var $this, value, checkbox, ulParent, selectWrapper, optionsTxt;
-                    
+
                     $this = $(this);
                     value = $this.attr("data-value");
                     checkbox = $this.find("input[type=\"checkbox\"]");

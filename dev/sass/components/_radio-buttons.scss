@@ -3,99 +3,99 @@
 
 // Remove default Radio Buttons
 form.formalize {
-	[type="radio"] {
+     [type="radio"] {
 
-		+ label:before,
-		+ label:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 0;
-			margin: 4px;
-			width: 16px;
-			height: 16px;
-			z-index: 0;
-			transition: .28s ease;
-		}
+          + label:before,
+          + label:after {
+               content: '';
+               position: absolute;
+               left: 0;
+               top: 0;
+               margin: 4px;
+               width: 16px;
+               height: 16px;
+               z-index: 0;
+               transition: .28s ease;
+          }
 
-		&:not(:checked), &:checked {
-			position: absolute;
-			left: -9999px;
-			opacity: 0;
+          &:not(:checked), &:checked {
+               position: absolute;
+               left: -9999px;
+               opacity: 0;
 
-			+ label {
-				position: relative;
-				padding-left: 35px;
-				cursor: pointer;
-				display: inline-block;
-				height: 25px;
-				line-height: 25px;
-				font-size: 1rem;
-				transition: .28s ease;
+               + label {
+                    position: relative;
+                    padding-left: 35px;
+                    cursor: pointer;
+                    display: inline-block;
+                    height: 25px;
+                    line-height: 25px;
+                    font-size: 1rem;
+                    transition: .28s ease;
 
-				-khtml-user-select: none; /* webkit (konqueror) browsers */
-				user-select: none;
-			}
+                    -khtml-user-select: none; /* webkit (konqueror) browsers */
+                    user-select: none;
+               }
 
-			+ label:before,
-			+ label:after {
-				border-radius: 50%;
-			}
+               + label:before,
+               + label:after {
+                    border-radius: 50%;
+               }
 
-			/* Disabled style */
-			&:disabled + label:before {
-				background-color: transparent;
-				border-color: $input-disabled-color;
-			}
-		}
+               /* Disabled style */
+               &:disabled + label:before {
+                    background-color: transparent;
+                    border-color: $input-disabled-color;
+               }
+          }
 
-		/* Unchecked styles */
-		&:not(:checked) {
-			+ label:before,
-			+ label:after {
-				border: 2px solid $radio-empty-color;
-			}
+          /* Unchecked styles */
+          &:not(:checked) {
+               + label:before,
+               + label:after {
+                    border: 2px solid $radio-empty-color;
+               }
 
-			+ label:after {
-				z-index: -1;
-				transform: scale(0);
-			}
-		}
+               + label:after {
+                    z-index: -1;
+                    transform: scale(0);
+               }
+          }
 
-		/* Checked styles */
-		&:checked {
-			+ label:before {
-				border: 2px solid transparent;
-			}
+          /* Checked styles */
+          &:checked {
+               + label:before {
+                    border: 2px solid transparent;
+               }
 
-			+ label:after {
-				background-color: $radio-fill-color;
-				z-index: 0;
-				transform: scale(.5);
-			}
+               + label:after {
+                    background-color: $radio-fill-color;
+                    z-index: 0;
+                    transform: scale(.5);
+               }
 
-			+ label:after,
-			+ label:before {
-				border: $radio-border;
-			}
+               + label:after,
+               + label:before {
+                    border: $radio-border;
+               }
 
-			/* Disabled style */
-			&:disabled + label:after {
-				border: none;
-				background-color: $input-disabled-color;
-				background-color: $input-disabled-color;
-				border-color: $input-disabled-solid-color;
-			}
-		}
+               /* Disabled style */
+               &:disabled + label:after {
+                    border: none;
+                    background-color: $input-disabled-color;
+                    background-color: $input-disabled-color;
+                    border-color: $input-disabled-solid-color;
+               }
+          }
 
-		/* Focused styles */
-		&.tabbed:focus + label:before {
-			box-shadow: 0 0 0 10px rgba(0,0,0,.1);
-		}
+          /* Focused styles */
+          &.tabbed:focus + label:before {
+               box-shadow: 0 0 0 10px rgba(0,0,0,.1);
+          }
 
-		/* Disabled style */
-		&:disabled + label {
-			color: $input-disabled-color;
-		}
-	}
+          /* Disabled style */
+          &:disabled + label {
+               color: $input-disabled-color;
+          }
+     }
 }
