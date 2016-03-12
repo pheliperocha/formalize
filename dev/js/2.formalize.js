@@ -16,100 +16,146 @@
 					$(this).siblings('label, i').removeClass('active');
 				}
 			});
-			
+
 			/*******************************
 		    * Add prefix, affix and suffix *
 			*******************************/
-			
+
 			var wrap_prefix = "input.prefix ~ input, button.prefix ~ input";
 			var btn_prefix = "input.prefix, button.prefix";
-			
+
 			var wrap_suffix = "input ~ input.suffix, input ~ button.suffix";
-			
+
 			// Set prefix wrapper
 			$(this).find(wrap_prefix).each(function(index, element) {
-				
+
 				var prefix = $(element).siblings(btn_prefix);
-				$(prefix).wrapAll('<span class="frm-btn-prefix">');
-				$(element).addClass("frm-affix");
-				
-			});
-			
-			// Set suffix wrapper
-			$(this).find(wrap_suffix).each(function() {
-				
-				var $this = $(this);
-				var affix = $this.siblings("input");
-				
-				$this.wrapAll('<span class="frm-btn-suffix">');
-				affix.addClass("frm-affix");
+				$(prefix).wrapAll('<span class="frz-btn-prefix">');
+				$(element).addClass("frz-affix");
 
 			});
-			
+
+			// Set suffix wrapper
+			$(this).find(wrap_suffix).each(function() {
+
+				var $this = $(this);
+				var affix = $this.siblings("input");
+
+				$this.wrapAll('<span class="frz-btn-suffix">');
+				affix.addClass("frz-affix");
+
+			});
+
 			// Set affix wrapper
-			$(this).find("input.frm-affix").each(function() {
-				
+			$(this).find("input.frz-affix").each(function() {
+
 				var $this = $(this);
 				var label = $this.next("label");
-				
-				label.andSelf().siblings("i.prefix, i.suffix").andSelf().wrapAll('<span class="frm-input-affix">');
+
+				label.andSelf().siblings("i.prefix, i.suffix").andSelf().wrapAll('<span class="frz-input-affix">');
 				// add character to fix a bug
 				label.before(" ");
 			});
-			
-			
+
+
 			// Text based inputs
 
 			// Add active if form auto complete
 			$(this).on('change', input_selector, function () {
+
+				// Remove active if input is empty
 				if($(this).val().length !== 0 || $(this).attr('placeholder') !== undefined) {
 					$(this).siblings('label').addClass('active');
 				}
+
 				validate_field($(this));
-			});
-
-			$(this).find(input_selector).not("input[type=button], input[type=submit]").each(function(index, element) {
-				var $this = $(this);
-				var parent = $this.parent();
-				var hasTagInfo = parent.has("span.tagInfo").length;
-				var hasMaxLength = ($this.attr("maxlength") || $this.attr("max") || $this.attr("length"));
-				var hasMinLength = $this.attr("min");
-
-				if (!hasTagInfo) {
-					parent.append("<span class=\"tagInfo\"></span>");
-				}
-				if (hasMinLength && hasMaxLength) {
-					$this.addClass("fr-counter");
-					parent.append("<span class=\"tagCount\">"+hasMinLength+" / "+hasMaxLength+"</span>");
-				}else
-					if (hasMaxLength) {
-						$this.addClass("fr-counter");
-						parent.append("<span class=\"tagCount\">"+0+" / "+hasMaxLength+"</span>");
-					}
 			});
 
 			/**********
 		    * Counter *
 			**********/
 
-			$(this).on('keyup keydown', ".fr-counter", function () {
+			$(this).find(input_selector).not("input[type=button], input[type=submit]").each(function() {
 				var $this = $(this);
-				var type = $(this).attr("type");
-				var maxLength = ($this.attr("maxlength") || $this.attr("max") || $this.attr("length"));
-				var minLength = $this.attr("min");
+				var parent = $this.parent();
+				var hasTagInfo = parent.has("span.tagInfo").length;
+				var hasCounter = $this.hasClass("frz-counter");
+				var hasMaxLength = ($this.attr("maxlength") || $this.attr("max"));
+				var hasMinLength = ($this.attr("minlength") || $this.attr("min"));
 
-				if (type != "number") {
-					$this.parent().find(".tagCount").html($this.val().length + " / " + maxLength);
-				} else {
-					var val = parseInt($this.val() != "" ? $this.val() : 0);
-
-					if (val >= minLength) {
-						$this.parent().find(".tagCount").html(val + " / " + maxLength);
-					} else {
-						$this.parent().find(".tagCount").html(minLength + " / " + maxLength);
-					}
+				if (!hasTagInfo) {
+					parent.append("<span class=\"tagInfo\"></span>");
 				}
 
+				if (hasMinLength && hasMaxLength) {
+					$this.addClass("frz-counter");
+					parent.append("<span class=\"tagCount\">"+hasMinLength+" / "+hasMaxLength+"</span>");
+				} else if (hasMaxLength) {
+					$this.addClass("frz-counter");
+					parent.append("<span class=\"tagCount\">0 / "+hasMaxLength+"</span>");
+				} else if (hasMinLength) {
+					$this.addClass("frz-counter");
+					parent.append("<span class=\"tagCount\">"+hasMinLength+" / *</span>");
+				}
+
+			});
+
+			$(this).find(".frz-counter").each(function() {
+				var $this = $(this);
+				var parent = $this.parent();
+				var hasTagCount = parent.find(".tagCount").length;
+
+				if (!hasTagCount) {
+					parent.append("<span class=\"tagCount\">0</span>");
+				}
+			});
+
+			$(this).on('keyup keydown', ".frz-counter", function () {
+				var $this = $(this);
+				var type = $(this).attr("type");
+				var maxLength = (($this.attr("maxlength") >= 0 || $this.attr("max") >= 0) ? ($this.attr("maxlength") || $this.attr("max")) : "*");
+				var minLength = (($this.attr("minlength") >= 0 || $this.attr("min") >= 0) ? ($this.attr("minlength") || $this.attr("min")) : "0");
+				var val = $this.val().length;
+
+				// When has only the class frz-counter
+				if (minLength == 0 && maxLength == "*") {
+
+					$this.parent().find(".tagCount").html(val);
+
+				// When has only the attribute minLength
+				} else if (minLength > 0 && maxLength == "*") {
+
+					if (val < minLength) {
+
+						$this.parent().find(".tagCount").html(val + " < " + minLength + " / *");
+
+					} else if (val >= minLength) {
+
+						$this.parent().find(".tagCount").html(val + " / *");
+
+					}
+
+					// When has only the attribute maxLength
+				} else if (minLength == 0 && maxLength >= 0) {
+
+					$this.parent().find(".tagCount").html(val + " / " + maxLength);
+
+					// When has both attributes, minLength and maxLength
+				} else if (minLength > 0 && maxLength >= 0) {
+
+					if (val < minLength) {
+
+						$this.parent().find(".tagCount").html(val + " < " + minLength + " / " + maxLength);
+
+					} else {
+
+						$this.parent().find(".tagCount").html(val + " / " + maxLength);
+
+					}
+
+				}
+				
+				validate_keypress($this);
 			});
 
 			/*******************************
@@ -144,13 +190,12 @@
 
 			$(document).on('blur', input_selector, function () {
 				var $inputElement = $(this);
+
+				// Remove active when aren't in focus and with not content
 				if ($inputElement.val().length === 0 && $inputElement[0].validity.badInput !== true && $inputElement.attr('placeholder') === undefined) {
 					$inputElement.siblings('label, i').removeClass('active');
 				}
 
-				if ($inputElement.val().length === 0 && $inputElement[0].validity.badInput !== true && $inputElement.attr('placeholder') !== undefined) {
-					$inputElement.siblings('i').removeClass('active');
-				}
 				validate_field($inputElement);
 			});
 
@@ -390,18 +435,6 @@
 					}
 				}
 
-				if (type == "number" && ( val < hasMinLenght || val > hasMaxLenght ) ) {
-					object.removeClass('valid');
-					object.addClass('invalid');
-					object.parent().find(".tagInfo").html("The value must be between "+hasMinLenght+" and "+hasMaxLenght);
-
-					return false;
-				} else {
-					object.removeClass('invalid');
-					object.addClass('valid');
-					object.parent().find(".tagInfo").html("");
-				}
-
 				if (type == "email") {
 					var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 					if(regex.test(val)) {
@@ -410,9 +443,42 @@
 					} else {
 						object.removeClass('valid');
 						object.addClass('invalid');
-						object.parent().find(".tagInfo").html("Invalid email!")
+						object.parent().find(".tagInfo").html("Invalid email!");
 					}
 				}
+			};
+			
+			// Validations on keypress event
+			window.validate_keypress = function(object) {
+				
+				var lenght = object.val().length;
+				
+				var maxLength = ((object.attr("maxlength") >= 0 || object.attr("max") >= 0) ? (object.attr("maxlength") || object.attr("max")) : "*");
+				var minLength = ((object.attr("minlength") >= 0 || object.attr("min") >= 0) ? (object.attr("minlength") || object.attr("min")) : "0");
+				
+				if (maxLength != "*" || minLength > "0") {
+					
+					if (lenght < minLength) {
+						
+						object.removeClass('valid');
+						object.addClass('invalid');
+						object.parent().find(".tagInfo").html("Can't be less than " + minLength);
+						
+					} else if (lenght > maxLength) {
+						
+						object.removeClass('valid');
+						object.addClass('invalid');
+						object.parent().find(".tagInfo").html("Can't be more than " + maxLength);
+						
+					} else {
+						
+						object.removeClass('invalid');
+						object.addClass('valid');
+						object.parent().find(".tagInfo").html("");
+						
+					}
+				}
+				
 			};
 
 			/***********

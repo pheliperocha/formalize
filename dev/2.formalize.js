@@ -8,13 +8,13 @@
 
 			$form = $(this);
 
-			$(this).on("keyup", ".fr-required", function() {
+			$(this).on("keyup", ".frz-required", function() {
 				if ($(this).val() != "") {
-					$(this).prev("label").removeClass("fr-empty");
-					$(this).removeClass("fr-empty");
+					$(this).prev("label").removeClass("frz-empty");
+					$(this).removeClass("frz-empty");
 				} else {
-					$(this).prev("label").addClass("fr-empty");
-					$(this).addClass("fr-empty");
+					$(this).prev("label").addClass("frz-empty");
+					$(this).addClass("frz-empty");
 				}
 			});
 
@@ -46,32 +46,32 @@
 				var optSelected = "";
 				var iconSelected = "";
 				var idx = 1;
-				var options = "<div class=\"fr-options\" style=\"width: "+($(this).width()+10)+"px;\">";		
+				var options = "<div class=\"frz-options\" style=\"width: "+($(this).width()+10)+"px;\">";		
 				$(this).find("option").each(function() {
 
 					var icon = $(this).attr("data-icon");
 
 					if (hasSelected < 1 && idx == 1) {
-						options += "<div class=\"fr-opt selected\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
+						options += "<div class=\"frz-opt selected\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
 						optSelected = $(this).text();
 						iconSelected = icon;
 					} else {
 						if ($(this).is(":selected")) {
-							options += "<div class=\"fr-opt selected\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
+							options += "<div class=\"frz-opt selected\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
 							optSelected = $(this).text();
 							iconSelected = icon;
 						} else {
-							options += "<div class=\"fr-opt\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
+							options += "<div class=\"frz-opt\" date-value=\""+$(this).val()+"\"><div class=\"icon ic ic-"+icon+"\"></div><div class=\"val\">"+$(this).text()+"</div></div>";
 						}
 					}
 					idx += 1;
 				});
 				options += "</div>";
 
-				if ($(this).hasClass("fr-icon")) {
-					var code = "<div class=\"fr-select\"><div class=\"icon ic ic-"+iconSelected+"\"></div><div class=\"text\">"+optSelected+"</div><div class=\"ic ic-arrow-down\"></div></div>";
+				if ($(this).hasClass("frz-icon")) {
+					var code = "<div class=\"frz-select\"><div class=\"icon ic ic-"+iconSelected+"\"></div><div class=\"text\">"+optSelected+"</div><div class=\"ic ic-arrow-down\"></div></div>";
 				} else {
-					var code = "<div class=\"fr-select\"><div class=\"text\">"+optSelected+"</div><div class=\"ic ic-arrow-down\"></div></div>";
+					var code = "<div class=\"frz-select\"><div class=\"text\">"+optSelected+"</div><div class=\"ic ic-arrow-down\"></div></div>";
 				}
 
 				$(this).css("display","none");
@@ -79,11 +79,11 @@
 				$(this).after(code+options);
 			});
 
-			$(this).on("click", ".fr-select", function() {
+			$(this).on("click", ".frz-select", function() {
 				openCloseSelect($(this))
 			});
 
-			$(this).on("click", ".fr-opt", function() {
+			$(this).on("click", ".frz-opt", function() {
 				var select = $(this).parent().prev();
 				
 				openCloseSelect(select);
@@ -102,7 +102,7 @@
 			});
 
 			function openCloseSelect(select) {
-				select.next(".fr-options").slideToggle(300, "swing", function() {
+				select.next(".frz-options").slideToggle(300, "swing", function() {
 					if (select.hasClass("opened")) {
 						select.removeClass("opened");
 						select.find(".ic-arrow-up").addClass("ic-arrow-down").removeClass("ic-arrow-up");
@@ -119,10 +119,10 @@
 
 	function checkForm($form) {
 
-		$form.find(".fr-required[type='text']").each(function() {
+		$form.find(".frz-required[type='text']").each(function() {
 			if ($(this).val() == "") {
-				$(this).prev("label").addClass("fr-empty");
-				$(this).addClass("fr-empty");
+				$(this).prev("label").addClass("frz-empty");
+				$(this).addClass("frz-empty");
 			}
 		});
 

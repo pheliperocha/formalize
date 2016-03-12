@@ -107,10 +107,6 @@ form.formalize {
 			color: $input-error-color;
 		}
 	}
-
-	i.prefix ~ .tagInfo {
-		margin-left: 3rem;
-	}
 }
 
 // Styling for input field wrapper
@@ -193,7 +189,7 @@ i.prefix ~ i.suffix ~ textarea {
 	width: calc(100% - 6rem);
 }
 
-.frm-input-affix {
+.frz-input-affix {
 	display: table-cell;
 	vertical-align: bottom;
 	position: relative;
