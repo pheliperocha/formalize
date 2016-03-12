@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat');
 	sass = require('gulp-sass');
 	merge = require('merge-stream');
+	plato = require('gulp-plato');
 
 // Task to uglify js files
 gulp.task('scripts', function() {
@@ -48,6 +49,20 @@ gulp.task('image', function() {
 	gulp.src('./img/*')
 		.pipe(imagemin())
 		.pipe(gulp.dest('./img/'));
+});
+
+gulp.task('plato', function () {
+	return gulp.src('./dev/js/*.js')
+		.pipe(plato('report', {
+			jshint: {
+				options: {
+					strict: true
+				}
+			},
+			complexity: {
+				trycatch: true
+			}
+		}));
 });
 
 // Watch the changes to then apply the uglify to the respectives files
