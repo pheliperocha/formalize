@@ -1,0 +1,40 @@
+body {
+     margin: 0;
+     padding: 0;
+     background: #eee;
+     color: #666;
+}
+
+.main {
+     background: #fff;
+     height: auto;
+     margin: 0 auto;
+     margin-bottom: 10px;
+     padding: 10px;
+     box-sizing: border-box;
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.login {
+     background: #fff;
+     height: auto;
+     margin: 0 auto;
+     margin-bottom: 10px;
+     padding: 10px;
+     box-sizing: border-box;
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (min-width: 1024px) {
+     .main {
+          width: 1024px;
+          margin-top: 50px;
+     }
+}
+
+@media only screen and (max-width: 1024px) {
+     .main {
+          width: auto;
+          margin: 10px 10px 10px 10px;
+     }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          <title>Formalize - Counters</title>
+
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
+
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+     </head>
+     <body>
+
+          <div class="main">
+
+               <h3>Formalize with Input Text and Input Button</h3>
+               <hr />
+               <br />
+
+               <form class="formalize" method="post">
+
+                    <div class="row">
+                         <div class="col c12">
+                              <textarea id="inp_1" type="text" class="frz-counter"></textarea>
+                              <label for="inp_1">Characters Counter</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c6">
+                              <input id="inp_2" type="text" minlength="10" />
+                              <label for="inp_2">Only min length</label>
+                         </div>
+
+                         <div class="col c6">
+                              <input id="inp_3" type="text" maxlength="20" />
+                              <label for="inp_3">Only max length</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input id="inp_4" type="text" minlength="30" maxlength="40">
+                              <label for="inp_4">Min and max length</label>
+                         </div>
+                    </div>
+
+               </form>
+
+          </div>
+
+     </body>
+</html>
