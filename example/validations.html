@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          <title>Formalize - Validations</title>
+
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
+
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+     </head>
+     <body>
+
+          <div class="main">
+
+               <h3>Formalize - Validation</h3>
+               <hr />
+               <br />
+
+               <form class="formalize" method="post">
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="text" id="inp_1" placeholder="I need to be filled" required />
+                              <label for="inp_1">Required</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c4">
+                              <input type="text" id="inp_2" minlength="10" placeholder="I acept only more than 10 characters" />
+                              <label for="inp_2">Minimum length</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="text" id="inp_3" maxlength="30" placeholder="I acept only less than 30 characters" />
+                              <label for="inp_3">Maximum length</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="text" id="inp_4" minlength="10" maxlength="30" placeholder="I acept only more than 10 and less than 30" />
+                              <label for="inp_4">Minimum and maximum length</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c4">
+                              <textarea id="txtA_1" class="frz-count-words" minlength="5"></textarea>
+                              <label for="txtA_1">Minimum words</label>
+                         </div>
+
+                         <div class="col c4">
+                              <textarea id="txtA_2" class="frz-count-words" maxlength="20"></textarea>
+                              <label for="txtA_2">Maximum words</label>
+                         </div>
+
+                         <div class="col c4">
+                              <textarea id="txtA_3" class="frz-count-words" minlength="5" maxlength="20"></textarea>
+                              <label for="txtA_3">Minimum and maximum words</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c4">
+                              <input type="number" id="inp_5" min="5" placeholder="I acept number not less than 5" />
+                              <label for="inp_5">Minimum value</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="number" id="inp_6" max="15" placeholder="I acept number not more than 15" />
+                              <label for="inp_6">Maximum value</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="number" id="inp_7" min="5" max="15" placeholder="I only acept numbers between 5 and 15" />
+                              <label for="inp_7">Minimum and maximum value</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="email" id="inp_8" placeholder="I acept only valid emails" />
+                              <label for="inp_8">Email</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="url" id="inp_9" placeholder="I acept only valid urls" />
+                              <label for="inp_9">URL</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="tel" id="inp_10" placeholder="I acept only valid telephone numbers" />
+                              <label for="inp_10">Telephone</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="text" id="inp_11" placeholder="I acept only valid postal code" />
+                              <label for="inp_11">Postal Code</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c4">
+                              <select id="select_1">
+                                   <option value="" disabled selected>Select a Card Type</option>
+                                   <option value="mastercard">MasterCard</option>
+                                   <option value="visa">Visa</option>
+                                   <option value="amex">American Express</option>
+                                   <option value="elo">Elo</option>
+                                   <option value="diners">Diners Club</option>
+                                   <option value="jcb">JCB International</option>
+                                   <option value="aura">Aura</option>
+                                   <option value="discover">Discover</option>
+                              </select>
+                              <label for="select_1">Credit Cart Flags</label>
+                         </div>
+
+                         <div class="col c6">
+                              <input type="text" id="inp_12" placeholder="Insert a valid credit card number" class="frz-creditcard" data-reference="select_1" />
+                              <label for="inp_12">Credit card nummber</label>
+                         </div>
+
+                         <div class="col c2">
+                              <input type="text" id="inp_13" placeholder="" class="frz-cvc" data-reference="select_1" />
+                              <label for="inp_13">Securety Code</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="date" id="inp_14" />
+                              <label for="inp_14">Date</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="text" id="inp_15" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                              <label for="inp_15">Pattern</label>
+                              <span class="tagInfo">Must contain 8 or more characters that are of at least one number, and one uppercase and lowercase letter</span>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <div class="btn">
+                                   <span>File</span>
+                                   <input type="file" id="inp_16" accept="image/*" />
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <div class="btn">
+                                   <span>File</span>
+                                   <input type="file" id="inp_17" data-maxsize="500" />
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c12">
+                              <input type="submit" value="Send" />
+                         </div>
+                    </div>
+
+               </form>
+
+          </div>
+
+     </body>
+</html>

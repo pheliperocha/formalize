@@ -7,7 +7,7 @@
 
           this.each(function () {
 
-               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix, validate_field, validate_keypress, radio_checkbox, hiddenDiv, text_area_selector, range_type, range_mousedown, left;
+               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix, validate_field, radio_checkbox, hiddenDiv, text_area_selector, range_type, range_mousedown, left;
 
                thisForm = $(this);
                input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea';
@@ -65,6 +65,19 @@
                     label.before(" ");
                });
 
+               // SetValid function
+               function setValid(isValid, message, obj) {
+                    if (isValid) {
+                         obj.addClass('valid');
+                         obj.removeClass('invalid');
+                         obj.parent().find(".tagInfo").html("");
+                    } else {
+                         obj.removeClass('valid');
+                         obj.addClass('invalid');
+                         obj.parent().find(".tagInfo").html(message);
+                    }
+               }
+
 
                // Text based inputs
 
@@ -84,14 +97,13 @@
                **********/
 
                $(this).find(input_selector).not("input[type=button], input[type=submit]").each(function () {
-                    var $this, parent, hasTagInfo, hasCounter, hasMaxLength, hasMinLength;
+                    var $this, parent, hasTagInfo, hasMaxLength, hasMinLength;
 
                     $this = $(this);
                     parent = $this.parent();
                     hasTagInfo = parent.has("span.tagInfo").length;
-                    hasCounter = $this.hasClass("frz-counter");
-                    hasMaxLength = ($this.attr("maxlength") || $this.attr("max"));
-                    hasMinLength = ($this.attr("minlength") || $this.attr("min"));
+                    hasMaxLength = ($this.attr("maxlength") || $this.attr("max") || $this.attr("data-max"));
+                    hasMinLength = ($this.attr("minlength") || $this.attr("min") || $this.attr("data-min"));
 
                     if (!hasTagInfo) {
                          parent.append("<span class=\"tagInfo\"></span>");
@@ -110,26 +122,60 @@
 
                });
 
-               $(this).find(".frz-counter").each(function () {
-                    var $this, parent, hasTagCount;
+               $(this).find(".frz-counter, .frz-counter-words, .frz-counter-sentences, .frz-counter-paragraphs").each(function () {
+                    var $this, parent, hasTagCount, hasCounterClass;
 
                     $this = $(this);
                     parent = $this.parent();
                     hasTagCount = parent.find(".tagCount").length;
+                    hasCounterClass = $this.hasClass("frz-counter");
 
                     if (!hasTagCount) {
                          parent.append("<span class=\"tagCount\">0</span>");
                     }
+
+                    if (!hasCounterClass) {
+                         $this.addClass("frz-counter");
+                    }
                });
 
                $(this).on('keyup keydown', ".frz-counter", function () {
-                    var $this, type, maxLength, minLength, val;
+                    var $this, maxLength, minLength, val, tClass;
 
                     $this = $(this);
-                    type = $(this).attr("type");
-                    maxLength = (($this.attr("maxlength") >= 0 || $this.attr("max") >= 0) ? ($this.attr("maxlength") || $this.attr("max")) : "*");
-                    minLength = (($this.attr("minlength") >= 0 || $this.attr("min") >= 0) ? ($this.attr("minlength") || $this.attr("min")) : 0);
-                    val = $this.val().length;
+                    maxLength = ($this.attr("maxlength") || $this.attr("max") || $this.attr("data-max"));
+                    minLength = ($this.attr("minlength") || $this.attr("min") || $this.attr("data-min"));
+
+                    maxLength = ((maxLength >= 0) ? maxLength : "*");
+                    minLength = ((minLength >= 0) ? minLength : 0);
+
+                    // Identify the kind of the counter
+                    if ($this.attr("type") === "number") {
+
+                         val = (!isNaN($this.val()) && $this.val() !== "") ? $this.val() : 0;
+
+                    } else if ($this.hasClass("frz-counter-words")) {
+
+                         val = $this.val().split(' ');
+                         val = val.length;
+
+                    } else if ($this.hasClass("frz-counter-sentences")) {
+
+                         val = $this.val().split('.');
+                         val = val.length;
+
+                    } else if ($this.hasClass("frz-counter-paragraphs")) {
+
+                         val = $this.val().split(/[\n]/);
+                         val = val.length;
+
+                    } else {
+
+                         val = ($this.val().length > 0) ? $this.val().length : 0;
+
+                    }
+
+                    val = parseInt(val, 10);
 
                     // When has only the class frz-counter
                     if (minLength === 0 && maxLength === "*") {
@@ -142,10 +188,12 @@
                          if (val < minLength) {
 
                               $this.parent().find(".tagCount").html(val + " < " + minLength + " / *");
+                              setValid(false, "Can't be less than " + minLength, $this);
 
                          } else if (val >= minLength) {
 
                               $this.parent().find(".tagCount").html(val + " / *");
+                              setValid(true, "", $this);
 
                          }
 
@@ -154,22 +202,33 @@
 
                          $this.parent().find(".tagCount").html(val + " / " + maxLength);
 
+                         if (val > maxLength) {
+                              setValid(false, "Can't be more than " + maxLength, $this);
+                         } else {
+                              setValid(true, "", $this);
+                         }
+
                          // When has both attributes, minLength and maxLength
                     } else if (minLength > 0 && maxLength >= 0) {
 
                          if (val < minLength) {
 
                               $this.parent().find(".tagCount").html(val + " < " + minLength + " / " + maxLength);
+                              setValid(false, "Can't be less than " + minLength, $this);
 
                          } else {
 
                               $this.parent().find(".tagCount").html(val + " / " + maxLength);
 
+                              if (val > maxLength) {
+                                   setValid(false, "Can't be more than " + maxLength, $this);
+                              } else {
+                                   setValid(true, "", $this);
+                              }
+
                          }
 
                     }
-
-                    validate_keypress($this);
                });
 
                /*******************************
@@ -587,11 +646,9 @@
 
                // Validations of values
                validate_field = function (object) {
-                    var hasRequired, hasMaxLenght, hasMinLenght, type, val, regex;
+                    var hasRequired, type, val, regex;
 
                     hasRequired = object.attr("required");
-                    hasMaxLenght = parseInt((object.attr("maxlength") || object.attr("max")), 10);
-                    hasMinLenght = parseInt(object.attr("min"), 10);
                     type = object.attr("type");
                     val = object.val();
 
@@ -621,40 +678,6 @@
                               object.parent().find(".tagInfo").html("Invalid email!");
                          }
                     }
-               };
-
-               // Validations on keypress event
-               validate_keypress = function (object) {
-                    var lenght, maxLength, minLength;
-
-                    lenght = object.val().length;
-
-                    maxLength = ((object.attr("maxlength") >= 0 || object.attr("max") >= 0) ? (object.attr("maxlength") || object.attr("max")) : "*");
-                    minLength = ((object.attr("minlength") >= 0 || object.attr("min") >= 0) ? (object.attr("minlength") || object.attr("min")) : "0");
-
-                    if (maxLength !== "*" || minLength > "0") {
-
-                         if (lenght < minLength) {
-
-                              object.removeClass('valid');
-                              object.addClass('invalid');
-                              object.parent().find(".tagInfo").html("Can't be less than " + minLength);
-
-                         } else if (lenght > maxLength) {
-
-                              object.removeClass('valid');
-                              object.addClass('invalid');
-                              object.parent().find(".tagInfo").html("Can't be more than " + maxLength);
-
-                         } else {
-
-                              object.removeClass('invalid');
-                              object.addClass('valid');
-                              object.parent().find(".tagInfo").html("");
-
-                         }
-                    }
-
                };
 
           });
