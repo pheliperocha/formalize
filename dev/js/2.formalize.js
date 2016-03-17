@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert*/
+/*global $, jQuery, alert, console*/
 
 (function ($) {
      "use strict";
@@ -646,38 +646,59 @@
 
                // Validations of values
                validate_field = function (object) {
-                    var hasRequired, type, val, regex;
+                    var hasRequired, type, val, regex, pattern;
 
                     hasRequired = object.attr("required");
                     type = object.attr("type");
                     val = object.val();
+                    pattern = (object.attr("pattern")) ? new RegExp(object.attr("pattern"), "g") : "";
 
                     if (hasRequired) {
                          if (val === "") {
-                              object.removeClass('valid');
-                              object.addClass('invalid');
-                              object.parent().find(".tagInfo").html("Required field!");
-
+                              setValid(false, "Required field!", object);
                               return false;
                          } else {
-                              object.removeClass('invalid');
-                              object.addClass('valid');
-                              object.parent().find(".tagInfo").html("");
+                              setValid(true, null, object);
                          }
                     }
 
-                    if (type === "email") {
+                    if (pattern) {
+
+                         if (pattern.test(val)) {
+                              setValid(true, null, object);
+                         } else {
+                              setValid(false, "Invalid value!", object);
+                         }
+
+                    } else if (type === "email") {
+
                          regex = /^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
                          if (regex.test(val)) {
-                              object.removeClass('invalid');
-                              object.addClass('valid');
-                              object.parent().find(".tagInfo").html("");
+                              setValid(true, null, object);
                          } else {
-                              object.removeClass('valid');
-                              object.addClass('invalid');
-                              object.parent().find(".tagInfo").html("Invalid email!");
+                              setValid(false, "Invalid email!", object);
                          }
+
+                    } else if (type === "url") {
+
+                         regex = /https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([\-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/;
+                         if (regex.test(val)) {
+                              setValid(true, null, object);
+                         } else {
+                              setValid(false, "Invalid URL!", object);
+                         }
+
+                    } else if (type === "tel") {
+
+                         regex = /[\(?\)? ?\d-*]{8,15}/;
+                         if (regex.test(val)) {
+                              setValid(true, null, object);
+                         } else {
+                              setValid(false, "Invalid Telephone!", object);
+                         }
+
                     }
+
                };
 
           });
