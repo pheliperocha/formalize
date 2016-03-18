@@ -218,49 +218,26 @@
 
                          $this.parent().find(".tagCount").html(val);
 
-                         // When has only the attribute minLength
-                    } else if (minLength > 0 && maxLength === "*") {
+                    // When has attribute minLength or maxLength
+                    } else {
 
-                         if (val < minLength) {
-
-                              $this.parent().find(".tagCount").html(val + " < " + minLength + " / *");
-                              setValid(false, "Can't be less than " + minLength, $this);
-
-                         } else if (val >= minLength) {
-
-                              $this.parent().find(".tagCount").html(val + " / *");
-                              setValid(true, "", $this);
-
-                         }
-
-                         // When has only the attribute maxLength
-                    } else if (minLength === 0 && maxLength >= 0) {
-
-                         $this.parent().find(".tagCount").html(val + " / " + maxLength);
-
-                         if (val > maxLength) {
-                              setValid(false, "Can't be more than " + maxLength, $this);
-                         } else {
-                              setValid(true, "", $this);
-                         }
-
-                         // When has both attributes, minLength and maxLength
-                    } else if (minLength > 0 && maxLength >= 0) {
-
+                         // If is less then minLenght
                          if (val < minLength) {
 
                               $this.parent().find(".tagCount").html(val + " < " + minLength + " / " + maxLength);
                               setValid(false, "Can't be less than " + minLength, $this);
 
-                         } else {
+                         // If is more then minLenght and less than maxLength
+                         } else if (val >= minLength && ((maxLength !== "*" && val <= maxLength) || maxLength === "*")) {
 
                               $this.parent().find(".tagCount").html(val + " / " + maxLength);
+                              setValid(true, "", $this);
 
-                              if (val > maxLength) {
-                                   setValid(false, "Can't be more than " + maxLength, $this);
-                              } else {
-                                   setValid(true, "", $this);
-                              }
+                         // If is more than maxLength
+                         } else if (val > maxLength) {
+
+                              $this.parent().find(".tagCount").html(val + " / " + maxLength);
+                              setValid(false, "Can't be more than " + maxLength, $this);
 
                          }
 
@@ -466,20 +443,6 @@
                               height: 30,
                               top: -28
                          }, 300, function () {});
-                    }
-
-                    if (e.type !== 'input') {
-                         if (e.pageX === undefined || e.pageX === null) {//mobile
-                              left = e.originalEvent.touches[0].pageX - $(this).offset().left;
-                         } else { // desktop
-                              left = e.pageX - $(this).offset().left;
-                         }
-                         if (left < 0) {
-                              left = 0;
-                         } else if (left > width) {
-                              left = width;
-                         }
-                         thumb.addClass('active').css('left', left);
                     }
 
                     thumb.find('.value').html($(this).val());
