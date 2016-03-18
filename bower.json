@@ -1,8 +1,9 @@
 {
-     "name": "formalize",
-     "dependencies": {
-          "jasmine-jquery": "2.1.1",
-          "jasmine": "2.4.1",
-          "jquery": "2.2.0"
-     }
+  "name": "formalize",
+  "dependencies": {
+    "jasmine-jquery": "2.1.1",
+    "jasmine": "2.4.1",
+    "jquery": "2.2.0",
+    "jquery-mask-plugin": "jQuery-Mask-Plugin#~1.13.8"
+  }
 }
