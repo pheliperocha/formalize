@@ -34,6 +34,23 @@ form.formalize {
                font-size: $button-font-size;
                line-height: $button-height !important;
           }
+
+          // Disabled shared style
+          &:disabled, .disabled {
+               background-color: $button-disabled-background !important;
+               box-shadow: none;
+               color: $button-disabled-color !important;
+               cursor: default;
+
+               * {
+                    pointer-events: none;
+               }
+
+               &:hover {
+                    background-color: $button-disabled-background !important;
+                    color: $button-disabled-color !important;
+               }
+          }
      }
 
      .btn:not(:last-child),
@@ -41,26 +58,6 @@ form.formalize {
      input[type="button"]:not(:last-child),
      input[type="submit"]:not(:last-child) {
           margin-right: 10px;
-     }
-
-     // Disabled shared style
-     .btn.disabled,
-     button.disabled,
-     input[type="button"].disabled,
-     input[type="submit"].disabled {
-          background-color: $button-disabled-background !important;
-          box-shadow: none;
-          color: $button-disabled-color !important;
-          cursor: default;
-
-          * {
-               pointer-events: none;
-          }
-
-          &:hover {
-               background-color: $button-disabled-background !important;
-               color: $button-disabled-color !important;
-          }
      }
 
      .frz-btn-prefix {

@@ -122,6 +122,10 @@ form.formalize {
                font-size: 1rem;
                cursor: text;
                transition: .2s ease-out;
+
+               .frz-char-required {
+                    color: #f00;
+               }
           }
 
           label.active {

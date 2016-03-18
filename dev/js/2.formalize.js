@@ -40,6 +40,14 @@
 
                // Update labels of text fields
                $(this).find(input_selector).each(function (index, element) {
+                    var hasRequired;
+
+                    hasRequired = $(element).attr("required");
+
+                    if (hasRequired) {
+                         $(this).siblings('label').append(" <span class=\"frz-char-required\">*</span>");
+                    }
+
                     if ($(element).val().length > 0 || element.autofocus || $(this).attr('placeholder') !== undefined || $(element)[0].validity.badInput === true) {
                          $(this).siblings('label, i').addClass('active');
                     } else {
@@ -376,10 +384,17 @@
                ****************/
 
                $(this).find("input[type=\"file\"]").each(function () {
-                    var placeholder, multiple, path_wrapper;
+                    var placeholder, multiple, path_wrapper, label, labelTxt, tagInfo, tagInfoTxt;
 
                     placeholder = ($(this).attr("placeholder") || $(this).data("placeholder"));
                     multiple = $(this).attr("multiple");
+                    label = $(this).siblings("label");
+                    labelTxt = label.text();
+                    tagInfo = $(this).siblings(".tagInfo");
+                    tagInfoTxt = tagInfo.text();
+
+                    label.remove();
+                    tagInfo.remove();
 
                     if (placeholder === undefined && multiple === undefined) {
                          placeholder = "Upload file";
@@ -387,7 +402,11 @@
                          placeholder = "Upload one or more files";
                     }
 
-                    path_wrapper = "<div class=\"file-path-wrapper\"><input class=\"file-path validate\" type=\"text\" placeholder=\"" + placeholder + "\"></div>";
+                    $("<i class=\"material-icons\">file_upload</i>").insertBefore($(this));
+
+                    $(this).siblings("i").andSelf().wrapAll('<div class="btn">');
+
+                    path_wrapper = "<div class=\"file-path-wrapper\"><label class=\"active\"> " + labelTxt + " </label><input class=\"file-path validate\" type=\"text\" placeholder=\"" + placeholder + "\"><span class=\"tagInfo\">" + tagInfoTxt + "</span></div>";
                     $(this).parent().after(path_wrapper);
                });
 
