@@ -7,10 +7,36 @@
 
           this.each(function () {
 
-               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix, validate_field, radio_checkbox, hiddenDiv, text_area_selector, range_type, range_mousedown, left;
+               var thisForm, input_selector, wrap_prefix, btn_prefix, wrap_suffix, validate_field, setMask, radio_checkbox, hiddenDiv, text_area_selector, range_type, range_mousedown, left, maskBehavior, options;
 
                thisForm = $(this);
                input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea';
+
+               /***********
+               * Set mask *
+               ***********/
+
+               setMask = function (object) {
+                    if (typeof object.mask === "function") {
+
+                         var type = object.attr("type");
+
+                         if (type === "tel") {
+                              object.mask(maskBehavior, options);
+                         }
+
+                    }
+               };
+
+               maskBehavior = function (val) {
+                    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+               };
+
+               options = {
+                    onKeyPress: function (val, e, field, options) {
+                         field.mask(maskBehavior.apply({}, arguments), options);
+                    }
+               };
 
                // Update labels of text fields
                $(this).find(input_selector).each(function (index, element) {
@@ -19,6 +45,8 @@
                     } else {
                          $(this).siblings('label, i').removeClass('active');
                     }
+
+                    setMask($(element));
                });
 
                /*******************************
@@ -252,7 +280,6 @@
                          });
                     }
                });
-
 
                /*************************************
                *  Add active when element has focus *
@@ -710,5 +737,4 @@
 $(document).ready(function () {
      "use strict";
      $(".formalize").formalize();
-
 });
