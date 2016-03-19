@@ -30,7 +30,7 @@ gulp.task('styles', function () {
 
      var cssStream = gulp.src('./dev/css/**/*.css')
           .pipe(autoprefixer({
-               browsers: ['> 1%'],
+               browsers: ['> 1%']
           }))
           .pipe(concat('css.min.css'))
           .on("error", errorLog);
@@ -67,7 +67,7 @@ gulp.task('plato', function () {
 
 // Watch the changes to then apply the uglify to the respectives files
 gulp.task('watch', function() {
-     gulp.watch("./dev/js/*.js", ['scripts']);
+     gulp.watch("./dev/js/*.js", ['scripts', 'plato']);
      gulp.watch("./dev/css/**/*.css", ['styles']);
      gulp.watch("./dev/sass/**/*.scss", ['styles']);
 });
@@ -78,4 +78,4 @@ function errorLog(error) {
      this.emit('end');
 }
 
-gulp.task('default', ['scripts', 'styles', 'watch']);
+gulp.task('default', ['scripts', 'styles', 'plato', 'watch']);

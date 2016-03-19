@@ -61,10 +61,10 @@
                * Add prefix, affix and suffix *
                *******************************/
 
-               wrap_prefix = "input.prefix ~ input, button.prefix ~ input";
+               wrap_prefix = "input.prefix ~ input, button.prefix ~ input, input.prefix ~ textarea, button.prefix ~ textarea";
                btn_prefix = "input.prefix, button.prefix";
 
-               wrap_suffix = "input ~ input.suffix, input ~ button.suffix";
+               wrap_suffix = "input ~ input.suffix, input ~ button.suffix, textarea ~ input.suffix, textarea ~ button.suffix";
 
                // Set prefix wrapper
                $(this).find(wrap_prefix).each(function (index, element) {
@@ -81,7 +81,7 @@
                     var $this, affix;
 
                     $this = $(this);
-                    affix = $this.siblings("input");
+                    affix = $this.siblings("input, textarea");
 
                     $this.wrapAll('<span class="frz-btn-suffix">');
                     affix.addClass("frz-affix");
@@ -89,7 +89,7 @@
                });
 
                // Set affix wrapper
-               $(this).find("input.frz-affix").each(function () {
+               $(this).find(".frz-affix").each(function () {
 
                     var $this, label;
 
@@ -175,6 +175,46 @@
                     }
                });
 
+               // get the split method to aux the counter
+               function getSplitMethod(obj) {
+                    if (obj.hasClass("frz-counter-words")) {
+
+                         return ' ';
+
+                    } else if (obj.hasClass("frz-counter-sentences")) {
+
+
+                         return '.';
+
+                    } else if (obj.hasClass("frz-counter-paragraphs")) {
+
+                         return '\n';
+
+                    } else {
+
+                         return '';
+
+                    }
+               }
+
+               // get the val of counter
+               function getValOfCounter(obj) {
+                    var val, type;
+
+                    type = obj.attr("type");
+
+                    // if it's a number count the value
+                    if (type === "number") {
+
+                         return (!isNaN(obj.val()) && obj.val() !== "") ? obj.val() : 0;
+
+                    } else {
+
+                         val = obj.val().split(getSplitMethod(obj));
+                         return val.length;
+                    }
+               }
+
                $(this).on('keyup keydown', ".frz-counter", function () {
                     var $this, maxLength, minLength, val, tClass;
 
@@ -185,32 +225,7 @@
                     maxLength = ((maxLength >= 0) ? maxLength : "*");
                     minLength = ((minLength >= 0) ? minLength : 0);
 
-                    // Identify the kind of the counter
-                    if ($this.attr("type") === "number") {
-
-                         val = (!isNaN($this.val()) && $this.val() !== "") ? $this.val() : 0;
-
-                    } else if ($this.hasClass("frz-counter-words")) {
-
-                         val = $this.val().split(' ');
-                         val = val.length;
-
-                    } else if ($this.hasClass("frz-counter-sentences")) {
-
-                         val = $this.val().split('.');
-                         val = val.length;
-
-                    } else if ($this.hasClass("frz-counter-paragraphs")) {
-
-                         val = $this.val().split(/[\n]/);
-                         val = val.length;
-
-                    } else {
-
-                         val = ($this.val().length > 0) ? $this.val().length : 0;
-
-                    }
-
+                    val = getValOfCounter($this);
                     val = parseInt(val, 10);
 
                     // When has only the class frz-counter
@@ -218,7 +233,7 @@
 
                          $this.parent().find(".tagCount").html(val);
 
-                    // When has attribute minLength or maxLength
+                         // When has attribute minLength or maxLength
                     } else {
 
                          // If is less then minLenght
@@ -227,13 +242,13 @@
                               $this.parent().find(".tagCount").html(val + " < " + minLength + " / " + maxLength);
                               setValid(false, "Can't be less than " + minLength, $this);
 
-                         // If is more then minLenght and less than maxLength
+                              // If is more then minLenght and less than maxLength
                          } else if (val >= minLength && ((maxLength !== "*" && val <= maxLength) || maxLength === "*")) {
 
                               $this.parent().find(".tagCount").html(val + " / " + maxLength);
                               setValid(true, "", $this);
 
-                         // If is more than maxLength
+                              // If is more than maxLength
                          } else if (val > maxLength) {
 
                               $this.parent().find(".tagCount").html(val + " / " + maxLength);
@@ -653,61 +668,59 @@
                     }
                });
 
+               function validRegex(obj, regex, message) {
+                    var val = obj.val();
+
+                    if (regex.test(val)) {
+                         setValid(true, null, obj);
+                    } else {
+                         setValid(false, message, obj);
+                    }
+               }
+
+               function checkEmptyRequired(obj) {
+                    var hasRequired, val;
+
+                    val = obj.val();
+                    hasRequired = obj.attr("required");
+
+                    if (hasRequired && val === "") {
+                         setValid(false, "Required field!", obj);
+                         return false;
+                    } else {
+                         setValid(true, null, obj);
+                    }
+               }
+
                // Validations of values
                validate_field = function (object) {
-                    var hasRequired, type, val, regex, pattern;
+                    var type, val, pattern;
 
-                    hasRequired = object.attr("required");
                     type = object.attr("type");
                     val = object.val();
                     pattern = (object.attr("pattern")) ? new RegExp(object.attr("pattern"), "g") : "";
 
-                    if (hasRequired) {
-                         if (val === "") {
-                              setValid(false, "Required field!", object);
-                              return false;
-                         } else {
-                              setValid(true, null, object);
-                         }
-                    }
+                    checkEmptyRequired(object);
 
                     if (pattern) {
 
-                         if (pattern.test(val)) {
-                              setValid(true, null, object);
-                         } else {
-                              setValid(false, "Invalid value!", object);
+                         validRegex(object, pattern, "Invalid value!");
+
+                    } else {
+                         if (type === "email") {
+
+                              validRegex(object, /^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/, "Invalid email!");
+
+                         } else if (type === "url") {
+
+                              validRegex(object, /https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([\-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/, "Invalid URL!");
+
+                         } else if (type === "tel") {
+
+                              validRegex(object, /[\(?\)? ?\d-*]{8,15}/, "Invalid Telephone!");
+
                          }
-
-                    } else if (type === "email") {
-
-                         regex = /^([\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
-                         if (regex.test(val)) {
-                              setValid(true, null, object);
-                         } else {
-                              setValid(false, "Invalid email!", object);
-                         }
-
-                    } else if (type === "url") {
-
-                         regex = /https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([\-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/;
-                         if (regex.test(val)) {
-                              setValid(true, null, object);
-                         } else {
-                              setValid(false, "Invalid URL!", object);
-                         }
-
-                    } else if (type === "tel") {
-
-                         regex = /[\(?\)? ?\d-*]{8,15}/;
-                         if (regex.test(val)) {
-                              setValid(true, null, object);
-                         } else {
-                              setValid(false, "Invalid Telephone!", object);
-                         }
-
                     }
-
                };
 
           });
