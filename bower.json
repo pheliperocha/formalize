@@ -1,6 +1,6 @@
 {
      "name": "formalize-jquery",
-     "version": "0.1.1",
+     "version": "0.1.2",
      "main": "dev/js/formalize.js",
      "description": "Create form easily. beautiful, responsive and complete forms for your application.",
      "keywords": [
