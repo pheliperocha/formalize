@@ -1,9 +1,21 @@
 {
-  "name": "formalize",
-  "dependencies": {
-    "jasmine-jquery": "2.1.1",
-    "jasmine": "2.4.1",
-    "jquery": "2.2.0",
-    "jquery-mask-plugin": "jQuery-Mask-Plugin#~1.13.8"
-  }
+     "name": "formalize-jquery",
+     "description": "Create form easily. beautiful, responsive and complete forms for your application.",
+     "keywords": [
+          "form",
+          "material design",
+          "responsive"
+     ],
+     "authors": [
+          "Phelipe Rocha <phelipeafonso@gmail.com>"
+     ],
+     "license": "MIT",
+     "dependencies": {
+          "jquery": "2.2.0",
+          "jquery-mask-plugin": "jQuery-Mask-Plugin#~1.13.8"
+     },
+     "devDependencies": {
+          "jasmine-jquery": "2.1.1",
+          "jasmine": "2.4.1"
+     }
 }
