@@ -1,5 +1,7 @@
 {
      "name": "formalize-jquery",
+     "version": "0.1.0",
+     "main": "dev/js/formalize.js",
      "description": "Create form easily. beautiful, responsive and complete forms for your application.",
      "keywords": [
           "form",
@@ -10,6 +12,14 @@
           "Phelipe Rocha <phelipeafonso@gmail.com>"
      ],
      "license": "MIT",
+     "ignore": [
+          "example",
+          ".bowerrc",
+          ".gitignore",
+          "bower.json",
+          "gulpfile.js",
+          "package.json"
+     ],
      "dependencies": {
           "jquery": "2.2.0",
           "jquery-mask-plugin": "jQuery-Mask-Plugin#~1.13.8"

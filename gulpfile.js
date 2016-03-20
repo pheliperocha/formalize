@@ -12,8 +12,8 @@ var gulp = require('gulp'),
 gulp.task('scripts', function() {
      gulp.src('./dev/js/*.js')
           .pipe(concat('formalize.min.js'))
-          //.pipe(uglifyjs())
-          //.on("error", errorLog)
+          .pipe(uglifyjs())
+          .on("error", errorLog)
           .pipe(gulp.dest('./dist/js/'));
 });
 
@@ -37,7 +37,7 @@ gulp.task('styles', function () {
 
 var mergedStream = merge(scssStream, cssStream)
         .pipe(concat('style.min.css'))
-        //.pipe(uglifycss())
+        .pipe(uglifycss())
         .pipe(gulp.dest('./dist/css/'));
 
 return mergedStream;
