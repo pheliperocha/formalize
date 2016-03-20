@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          <title>Formalize - Counters</title>
+
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
+
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+     </head>
+     <body>
+
+          <div class="main">
+
+               <h3>Counters with Formalize</h3>
+               <hr />
+               <br />
+
+               <form class="formalize" method="post">
+
+                    <fieldset>
+                         <legend>Characters:</legend>
+
+                         <div class="row">
+                              <div class="col c12">
+                                   <textarea id="inp_1" class="frz-counter"></textarea>
+                                   <label for="inp_1">Characters Counter</label>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col c4">
+                                   <input id="inp_2" type="text" minlength="10" />
+                                   <label for="inp_2">Only min length</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_3" type="text" maxlength="20" />
+                                   <label for="inp_3">Only max length</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_4" type="text" minlength="30" maxlength="40">
+                                   <label for="inp_4">Min and max length</label>
+                              </div>
+                         </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                         <legend>Numbers:</legend>
+
+                         <div class="row">
+                              <div class="col c12">
+                                   <input id="inp_000" type="number" class="frz-counter" />
+                                   <label for="inp_000">Number counter</label>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col c4">
+                                   <input id="inp_5" type="number" min="10" />
+                                   <label for="inp_5">Only min number</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_6" type="number" max="20" />
+                                   <label for="inp_6">Only max number</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_7" type="number" min="30" max="40">
+                                   <label for="inp_7">Min and max number</label>
+                              </div>
+                         </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                         <legend>Words:</legend>
+
+                         <div class="row">
+                              <div class="col c12">
+                                   <input id="inp_8" class="frz-counter-words" type="text" />
+                                   <label for="inp_8">Words counter</label>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col c4">
+                                   <input id="inp_9" class="frz-counter-words" type="text" data-min="10" />
+                                   <label for="inp_9">Only min words</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_10" class="frz-counter-words" type="text" data-max="20" />
+                                   <label for="inp_10">Only max words</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_11" class="frz-counter-words" type="text" data-min="30" data-max="40">
+                                   <label for="inp_11">Min and max words</label>
+                              </div>
+                         </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                         <legend>Sentences:</legend>
+
+                         <div class="row">
+                              <div class="col c12">
+                                   <input id="inp_12" class="frz-counter-sentences" type="text" />
+                                   <label for="inp_12">Sentences Counter</label>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col c4">
+                                   <input id="inp_13" class="frz-counter-sentences" type="text" data-min="10" />
+                                   <label for="inp_13">Only min sentences</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_14" class="frz-counter-sentences" type="text" data-max="20" />
+                                   <label for="inp_14">Only max sentences</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <input id="inp_15" class="frz-counter-sentences" type="text" data-min="30" data-max="40">
+                                   <label for="inp_15">Min and max sentences</label>
+                              </div>
+                         </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                         <legend>Paragraphs:</legend>
+
+                         <div class="row">
+                              <div class="col c12">
+                                   <textarea id="inp_16" class="frz-counter-paragraphs"></textarea>
+                                   <label for="inp_16">Paragraphs Counter</label>
+                              </div>
+                         </div>
+
+                         <div class="row">
+                              <div class="col c4">
+                                   <textarea id="inp_17" class="frz-counter-paragraphs" data-min="10"></textarea>
+                                   <label for="inp_17">Only min paragraphs</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <textarea id="inp_18" class="frz-counter-paragraphs" data-max="20"></textarea>
+                                   <label for="inp_18">Only max paragraphs</label>
+                              </div>
+
+                              <div class="col c4">
+                                   <textarea id="inp_19" class="frz-counter-paragraphs" data-min="30" data-max="40"></textarea>
+                                   <label for="inp_19">Min and max paragraphs</label>
+                              </div>
+                         </div>
+
+                    </fieldset>
+
+               </form>
+
+          </div>
+
+     </body>
+</html>

@@ -1,813 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="Example of simple form with Formalize Plugin">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<title>Formalize - Simple Email Form</title>
-
-		<!-- JQuery -->
-		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-
-		<!-- Formalize Plugin -->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="../dist/css/style.min.css" />
-		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
-
-
-		<style type="text/css">
-
-			body {
-				margin: 0px;
-				padding: 0px;
-				background: #eee;
-				color: #666;
-			}
-
-			.main {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
-
-			.login {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
-
-			@media only screen and (min-width: 1024px) {
-				.main {
-					width: 1024px;
-					margin-top: 50px;
-				}
-			}
-
-			@media only screen and (max-width: 1024px) {
-				.main {
-					width: auto;
-					margin: 10px 10px 10px 10px;
-				}
-			}
-
-		</style>
-
-	</head>
-	<body>
-
-		<div class="main">
-
-			<h3>Formalize with Input Text and Input Button</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="text">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="text">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="text">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<input type="button" value="Ok" class="prefix">
-
-						<input id="inp_4" type="text">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="text">
-						<label for="inp_5">Input 5</label>
-
-						<input type="button" value="Ok" class="suffix">
-
-					</div>
-
-					<div class="col c4">
-
-						<input type="button" value="Ok" class="prefix">
-
-						<input id="inp_6" type="text">
-						<label for="inp_6">Input 6</label>
-
-						<input type="button" value="Ok" class="suffix">
-
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="text">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="text">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="text">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="text">
-						<label for="inp_10">Input 10</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="text">
-						<label for="inp_11">Input 11</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="text">
-						<label for="inp_12">Input 12</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-		<div class="main">
-
-			<h3>Formalize with Input Text and Input submit</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="text">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="text">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="text">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<input type="submit" value="Ok" class="prefix">
-
-						<input id="inp_4" type="text">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="text">
-						<label for="inp_5">Input 5</label>
-
-						<input type="submit" value="Ok" class="suffix">
-
-					</div>
-
-					<div class="col c4">
-
-						<input type="submit" value="Ok" class="prefix">
-
-						<input id="inp_6" type="text">
-						<label for="inp_6">Input 6</label>
-
-						<input type="submit" value="Ok" class="suffix">
-
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="text">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="text">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="text">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="text">
-						<label for="inp_10">Input 10</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="text">
-						<label for="inp_11">Input 11</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="text">
-						<label for="inp_12">Input 12</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-		<div class="main">
-
-			<h3>Formalize with Input Text and Button</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="text">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="text">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="text">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<button type="button" name="action" class="prefix">OK</button>
-
-						<input id="inp_4" type="text">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="text">
-						<label for="inp_5">Input 5</label>
-
-						<button type="button" name="action" class="suffix">OK</button>
-
-					</div>
-
-					<div class="col c4">
-
-						<button type="button" name="action" class="prefix">OK</button>
-
-						<input id="inp_6" type="text">
-						<label for="inp_6">Input 6</label>
-
-						<button type="button" name="action" class="suffix">OK</button>
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="text">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="text">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="text">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="text">
-						<label for="inp_10">Input 10</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="text">
-						<label for="inp_11">Input 11</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="text">
-						<label for="inp_12">Input 12</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-		<div class="main">
-
-			<h3>Formalize with Input Number and Input Button</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="number">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="number">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="number">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<input type="button" value="Ok" class="prefix">
-
-						<input id="inp_4" type="number">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="number">
-						<label for="inp_5">Input 5</label>
-
-						<input type="button" value="Ok" class="suffix">
-
-					</div>
-
-					<div class="col c4">
-
-						<input type="button" value="Ok" class="prefix">
-
-						<input id="inp_6" type="number">
-						<label for="inp_6">Input 6</label>
-
-						<input type="button" value="Ok" class="suffix">
-
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="number">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="number">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="button" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="number">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="number">
-						<label for="inp_10">Input 10</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="number">
-						<label for="inp_11">Input 11</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="number">
-						<label for="inp_12">Input 12</label>
-						
-						<input type="button" value="Ok" class="suffix">
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-		<div class="main">
-
-			<h3>Formalize with Input Number and Input submit</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="number">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="number">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="number">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<input type="submit" value="Ok" class="prefix">
-
-						<input id="inp_4" type="number">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="number">
-						<label for="inp_5">Input 5</label>
-
-						<input type="submit" value="Ok" class="suffix">
-
-					</div>
-
-					<div class="col c4">
-
-						<input type="submit" value="Ok" class="prefix">
-
-						<input id="inp_6" type="number">
-						<label for="inp_6">Input 6</label>
-
-						<input type="submit" value="Ok" class="suffix">
-
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="number">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="number">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<input type="submit" value="Ok" class="prefix">
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="number">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="number">
-						<label for="inp_10">Input 10</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="number">
-						<label for="inp_11">Input 11</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="number">
-						<label for="inp_12">Input 12</label>
-						
-						<input type="submit" value="Ok" class="suffix">
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-		<div class="main">
-
-			<h3>Formalize with Input Number and Button</h3>
-			<hr />
-			<br />
-
-			<form class="formalize" method="post">
-
-				<div class="row">
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_1" type="number">
-						<label for="inp_1">Input 1</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_2" type="number">
-						<label for="inp_2">Input 2</label>
-					</div>
-
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_3" type="number">
-						<label for="inp_3">Input 3</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col c4">
-
-						<button type="button" name="action" class="prefix">OK</button>
-
-						<input id="inp_4" type="number">
-						<label for="inp_4">Input 4</label>
-
-					</div>
-
-					<div class="col c4">
-
-						<input id="inp_5" type="number">
-						<label for="inp_5">Input 5</label>
-
-						<button type="button" name="action" class="suffix">OK</button>
-
-					</div>
-
-					<div class="col c4">
-
-						<button type="button" name="action" class="prefix">OK</button>
-
-						<input id="inp_6" type="number">
-						<label for="inp_6">Input 6</label>
-
-						<button type="button" name="action" class="suffix">OK</button>
-
-					</div>
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_7" type="number">
-						<label for="inp_7">Input 7</label>
-					</div>
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_8" type="number">
-						<label for="inp_8">Input 8</label>
-					</div>
-				
-					<div class="col c4">
-						<button type="button" name="action" class="prefix">OK</button>
-						
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_9" type="number">
-						<label for="inp_9">Input 9</label>
-					</div>
-					
-				</div>
-
-				<div class="row">
-				
-					<div class="col c4">
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_10" type="number">
-						<label for="inp_10">Input 10</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-				
-					<div class="col c4">						
-						<i class="material-icons prefix">account_circle</i>
-						<input id="inp_11" type="number">
-						<label for="inp_11">Input 11</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-				
-					<div class="col c4">
-						<i class="material-icons prefix">account_circle</i>
-						<i class="material-icons suffix">account_circle</i>
-						<input id="inp_12" type="number">
-						<label for="inp_12">Input 12</label>
-						
-						<button type="button" name="action" class="suffix">OK</button>
-					</div>
-					
-				</div>
-
-			</form>
-
-		</div>
-
-	</body>
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          <title>Formalize - Simple Email Form</title>
+
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
+
+          <!-- Material Design Icons -->
+          <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+
+     </head>
+     <body>
+
+          <div class="main">
+
+               <h3>Formalize with Input Text and Input Button</h3>
+               <hr />
+               <br />
+
+               <form class="formalize" method="post">
+
+                    <div class="row">
+                         <div class="col c4">
+                              <i class="material-icons prefix">account_circle</i>
+                              <input id="inp_1" type="text" class="frz-counter" />
+                              <label for="inp_1">Counter</label>
+                         </div>
+
+                         <div class="col c4">
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_2" type="text" minlength="10" />
+                              <label for="inp_2">MinL</label>
+                         </div>
+
+                         <div class="col c4">
+                              <i class="material-icons prefix">account_circle</i>
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_3" type="text" maxlength="20" />
+                              <label for="inp_3">MaxL</label>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col c4">
+
+                              <input type="button" value="Ok" class="prefix">
+
+                              <input id="inp_4" type="text" minlength="30" maxlength="40">
+                              <label for="inp_4">MinL and MaxL</label>
+
+                         </div>
+
+                         <div class="col c4">
+
+                              <input id="inp_5" type="text" min="3" />
+                              <label for="inp_5">Min</label>
+
+                              <input type="button" value="Ok" class="suffix">
+
+                         </div>
+
+                         <div class="col c4">
+
+                              <input type="button" value="Ok" class="prefix">
+
+                              <input id="inp_6" type="text" max="5" />
+                              <label for="inp_6">Max</label>
+
+                              <input type="button" value="Ok" class="suffix">
+
+
+                         </div>
+                    </div>
+
+                    <div class="row">
+
+                         <div class="col c4">
+                              <input type="button" value="Ok" class="prefix" min="12" max="19" />
+
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_7" type="text" min="7" max="11">
+                              <label for="inp_7">Min and Max</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="button" value="Ok" class="prefix">
+
+                              <i class="material-icons prefix">account_circle</i>
+                              <input id="inp_8" type="text">
+                              <label for="inp_8">Input 8</label>
+                         </div>
+
+                         <div class="col c4">
+                              <input type="button" value="Ok" class="prefix">
+
+                              <i class="material-icons prefix">account_circle</i>
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_9" type="text">
+                              <label for="inp_9">Input 9</label>
+                         </div>
+
+                    </div>
+
+                    <div class="row">
+
+                         <div class="col c4">
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_10" type="text">
+                              <label for="inp_10">Input 10</label>
+
+                              <input type="button" value="Ok" class="suffix">
+                         </div>
+
+                         <div class="col c4">
+                              <i class="material-icons prefix">account_circle</i>
+                              <input id="inp_11" type="text">
+                              <label for="inp_11">Input 11</label>
+
+                              <input type="button" value="Ok" class="suffix">
+                         </div>
+
+                         <div class="col c4">
+                              <i class="material-icons prefix">account_circle</i>
+                              <i class="material-icons suffix">account_circle</i>
+                              <input id="inp_12" type="text">
+                              <label for="inp_12">Input 12</label>
+
+                              <input type="button" value="Ok" class="suffix">
+                         </div>
+
+                    </div>
+
+               </form>
+
+          </div>
+
+     </body>
 </html>

@@ -1,163 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="Example of simple form with Formalize Plugin">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Formalize - Simple Email Form</title>
+          <title>Formalize - Simple Email Form</title>
 
-		<!-- JQuery -->
-		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
 
-		<!-- Formalize Plugin -->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="../dist/css/style.min.css" />
-		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
 
+          <!-- Material Design Icons -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+          <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<style type="text/css">
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
 
-			body {
-				margin: 0px;
-				padding: 0px;
-				background: #eee;
-				color: #666;
-			}
+     </head>
+     <body>
 
-			.main {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+          <div class="main">
 
-			.login {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+               <h3>Contact Form with Formalize</h3>
+               <hr />
+               <br />
 
-			@media only screen and (min-width: 1024px) {
-				.main {
-					width: 1024px;
-					margin-top: 50px;
-				}
-			}
+               <form class="formalize">
+                    <div class="row">
+                         <div class="col c12">
+                              <i class="material-icons prefix">personal</i>
+                              <input id="name" type="text">
+                              <label for="name">Name</label>
+                         </div>
+                    </div>
 
-			@media only screen and (max-width: 1024px) {
-				.main {
-					width: auto;
-					margin: 10px 10px 10px 10px;
-				}
-			}
+                    <div class="row">
+                         <div class="col c12">
+                              <i class="material-icons prefix">email</i>
+                              <input id="email" type="email">
+                              <label for="email">Email</label>
+                         </div>
+                    </div>
 
-		</style>
+                    <div class="row">
+                         <div class="col c12">
+                              <i class="material-icons prefix">email</i>
+                              <input id="website" type="text">
+                              <label for="website">Website</label>
+                         </div>
+                    </div>
 
-	</head>
-	<body>
+                    <div class="row">
+                         <div class="col c6">
+                              <i class="material-icons prefix">phone</i>
+                              <input id="telephone" type="tel">
+                              <label for="telephone">Telephone</label>
+                         </div>
+                         <div class="col c6">
+                              <i class="material-icons prefix">phone</i>
+                              <input id="cellphone" type="tel">
+                              <label for="cellphone">Cell Phone</label>
+                         </div>
+                    </div>
 
-		<div class="main">
+                    <div class="row">
+                         <div class="col c3">
+                              <i class="fa fa-facebook-official prefix"></i>
+                              <input id="facebook" type="text">
+                              <label for="facebook">Facebook</label>
+                         </div>
 
-			<h3>Contact Form with Formalize</h3>
-			<hr />
-			<br />
+                         <div class="col c3">
+                              <i class="fa fa-twitter prefix"></i>
+                              <input id="twitter" type="text">
+                              <label for="twitter">Twitter</label>
+                         </div>
 
-			<form class="formalize">
-				<div class="row">
-					<div class="col s12">
-						<i class="material-icons prefix">personal</i>
-						<input id="name" type="text">
-						<label for="name">Name</label>
-					</div>
-				</div>
+                         <div class="col c3">
+                              <i class="fa fa-linkedin prefix"></i>
+                              <input id="linkedin" type="text">
+                              <label for="linkedin">Linkedin</label>
+                         </div>
 
-				<div class="row">
-					<div class="col s12">
-						<i class="material-icons prefix">email</i>
-						<input id="email" type="email">
-						<label for="email">Email</label>
-					</div>
-				</div>
+                         <div class="col c3">
+                              <i class="fa fa-github prefix"></i>
+                              <input id="github" type="text">
+                              <label for="github">Github</label>
+                         </div>
+                    </div>
 
-				<div class="row">
-					<div class="col s12">
-						<i class="material-icons prefix">email</i>
-						<input id="website" type="text">
-						<label for="website">Website</label>
-					</div>
-				</div>
+                    <div class="row">
+                         <div class="col c12">
+                              <i class="material-icons prefix">message</i>
+                              <textarea id="message" class="frz-counter"></textarea>
+                              <label for="message">Message</label>
+                         </div>
+                    </div>
 
-				<div class="row">
-					<div class="col s6">
-						<i class="material-icons prefix">phone</i>
-						<input id="telephone" type="tel">
-						<label for="telephone">Telephone</label>
-					</div>
-					<div class="col s6">
-						<i class="material-icons prefix">phone</i>
-						<input id="cellphone" type="tel">
-						<label for="cellphone">Cell Phone</label>
-					</div>
-				</div>
+                    <div class="row">
+                         <div class="col c12">
+                              <button type="button" name="send">send
+                                   <i class="large material-icons right">send</i>
+                              </button>
+                         </div>
+                    </div>
 
-				<div class="row">
-					<div class="col s3">
-						<input id="facebook" type="text">
-						<label for="facebook">Facebook</label>
-					</div>
+               </form>
 
-					<div class="col s3">
-						<input id="twitter" type="text">
-						<label for="twitter">Twitter</label>
-					</div>
+          </div>
 
-					<div class="col s3">
-						<input id="linkedin" type="text">
-						<label for="linkedin">Linkedin</label>
-					</div>
-
-					<div class="col s3">
-						<input id="github" type="text">
-						<label for="github">Github</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col s12">
-						<i class="material-icons prefix">message</i>
-						<textarea id="message"></textarea>
-						<label for="message">Message</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col s12">
-						<button type="button" name="send">send
-							<i class="large material-icons right">send</i>
-						</button>
-					</div>
-				</div>
-
-			</form>
-
-		</div>
-
-	</body>
+     </body>
 </html>

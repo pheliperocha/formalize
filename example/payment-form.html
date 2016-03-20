@@ -1,179 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="Example of simple form with Formalize Plugin">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="description" content="Example of simple form with Formalize Plugin">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Formalize - Simple Email Form</title>
+          <title>Formalize - Simple Email Form</title>
 
-		<!-- JQuery -->
-		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+          <!-- JQuery -->
+          <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
 
-		<!-- Formalize Plugin -->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="../dist/css/style.min.css" />
-		<script type="text/javascript" src="../dist/js/formalize.min.js"></script>
+          <!-- Default CSS -->
+          <link href="css/default.css" rel="stylesheet">
 
+          <!-- Material Design Icons -->
+          <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<style type="text/css">
+          <!-- Formalize Plugin -->
+          <link rel="stylesheet" href="../dist/css/style.min.css" />
+          <script type="text/javascript" src="../dist/js/formalize.min.js"></script>
 
-			body {
-				margin: 0px;
-				padding: 0px;
-				background: #eee;
-				color: #666;
-			}
+     </head>
+     <body>
 
-			.main {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+          <div class="main">
 
-			.login {
-				background: #fff;
-				height: auto;
-				margin: 0px auto;
-				margin-bottom: 10px;
-				padding: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-			}
+               <h3>Payment Form with Formalize</h3>
+               <hr />
+               <br />
 
-			@media only screen and (min-width: 1024px) {
-				.main {
-					width: 1024px;
-					margin-top: 50px;
-				}
-			}
+               <form class="formalize">
 
-			@media only screen and (max-width: 1024px) {
-				.main {
-					width: auto;
-					margin: 10px 10px 10px 10px;
-				}
-			}
+                    <div class="row">
 
-		</style>
+                         <div class="col c6">
+                              <select id="cardtype">
+                                   <option value="" disabled selected>Select a Card Type</option>
+                                   <option value="mastercard">MasterCard</option>
+                                   <option value="visa">Visa</option>
+                                   <option value="amex">American Express</option>
+                                   <option value="elo">Elo</option>
+                                   <option value="diners">Diners Club</option>
+                                   <option value="jcb">JCB International</option>
+                                   <option value="aura">Aura</option>
+                                   <option value="discover">Discover</option>
+                              </select>
+                              <label for="type">Credit Card Type</label>
+                         </div>
 
-	</head>
-	<body>
+                         <div class="col c6">
+                              <select id="installments_number">
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5</option>
+                                   <option value="6">6</option>
+                              </select>
+                              <label for="type">Installments Number</label>
+                         </div>
 
-		<div class="main">
+                    </div>
 
-			<h3>Payment Form with Formalize</h3>
-			<hr />
-			<br />
+                    <div class="row">
+                         <div class="col c12">
+                              <input id="name" type="text">
+                              <label for="name">Holder Name</label>
+                         </div>
 
-			<form class="formalize">
-				<div class="row">
-					<div class="col s3">
-						<select id="cardtype">
-							<option value="" disabled selected>Select a Card Type</option>
-							<option value="mastercard">MasterCard</option>
-							<option value="visa">Visa</option>
-							<option value="amex">American Express</option>
-							<option value="elo">Elo</option>
-							<option value="diners">Diners Club</option>
-							<option value="jcb">JCB International</option>
-							<option value="aura">Aura</option>
-							<option value="discover">Discover</option>
-						</select>
-						<label for="type">Credit Card Type</label>
-					</div>
+                    </div>
 
-					<div class="col s3">
-						<select id="installments_number">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-						</select>
-						<label for="type">Installments Number</label>
-					</div>
-				</div>
+                    <div class="row">
+                         <div class="col c2">
+                              <select id="expiration_month">
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5</option>
+                                   <option value="6">6</option>
+                              </select>
+                              <label>Expiration Day</label>
+                         </div>
+                         <div class="col c2">
+                              <select id="expiration_year">
+                                   <option value="2016">2016</option>
+                                   <option value="2017">2017</option>
+                                   <option value="2018">2018</option>
+                                   <option value="2019">2019</option>
+                                   <option value="2020">2020</option>
+                                   <option value="2021">2021</option>
+                                   <option value="2022">2022</option>
+                                   <option value="2023">2023</option>
+                                   <option value="2024">2024</option>
+                                   <option value="2025">2025</option>
+                                   <option value="2026">2026</option>
+                                   <option value="2027">2027</option>
+                                   <option value="2028">2028</option>
+                                   <option value="2029">2029</option>
+                                   <option value="2030">2030</option>
+                                   <option value="2031">2031</option>
+                              </select>
+                              <label>Expiration Year</label>
+                         </div>
 
-				<div class="row">
-					<div class="col s6">
-						<input id="name" type="text">
-						<label for="name">Holder Name</label>
-					</div>
+                         <div class="col c6">
+                              <i class="material-icons prefix">credit_card</i>
+                              <input id="number" type="text">
+                              <label for="number">Number</label>
+                         </div>
 
-					<div class="col s6">
-						<i class="material-icons prefix">credit_card</i>
-						<input id="number" type="text">
-						<label for="number">Number</label>
-					</div>
-				</div>
+                         <div class="col c2">
+                              <input id="code" type="text">
+                              <label for="code">Securety Code</label>
+                         </div>
+                    </div>
 
-				<div class="row">
-					<div class="col s2">
-						<select id="expiration_month" class="float: left;">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-						</select>
-						<label>Expiration Day</label>
-					</div>
-					<div class="col s0">
-						<label> / </label>
-					</div>
-					<div class="col s2">
-						<select id="expiration_year" class="float: left;">
-							<option value="2016">2016</option>
-							<option value="2017">2017</option>
-							<option value="2018">2018</option>
-							<option value="2019">2019</option>
-							<option value="2020">2020</option>
-							<option value="2021">2021</option>
-							<option value="2022">2022</option>
-							<option value="2023">2023</option>
-							<option value="2024">2024</option>
-							<option value="2025">2025</option>
-							<option value="2026">2026</option>
-							<option value="2027">2027</option>
-							<option value="2028">2028</option>
-							<option value="2029">2029</option>
-							<option value="2030">2030</option>
-							<option value="2031">2031</option>
-						</select>
-						<label>Expiration Year</label>
-					</div>
-					
-					<div class="col s7">
-						<input id="code" type="text">
-						<label for="code">Securety Code</label>
-					</div>
-				</div>
+                    <div class="row">
+                         <div class="col c12">
+                              <button type="button" name="send">Buy</button>
+                         </div>
+                    </div>
 
-				<div class="row">
-					<div class="col s12">
-						<button type="button" name="send">Buy</button>
-					</div>
-				</div>
+               </form>
 
-			</form>
+          </div>
 
-		</div>
-
-	</body>
+     </body>
 </html>

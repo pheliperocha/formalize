@@ -3,265 +3,265 @@
 
 /* Style Placeholders */
 form.formalize {
-	::-webkit-input-placeholder {
-		color: $placeholder-text-color;
-	}
+     ::-webkit-input-placeholder {
+          color: $placeholder-text-color;
+     }
 
-	:-moz-placeholder { /* Firefox 18- */
-		color: $placeholder-text-color;
-	}
+     :-moz-placeholder { /* Firefox 18- */
+          color: $placeholder-text-color;
+     }
 
-	::-moz-placeholder {  /* Firefox 19+ */
-		color: $placeholder-text-color;
-	}
+     ::-moz-placeholder {  /* Firefox 19+ */
+          color: $placeholder-text-color;
+     }
 
-	:-ms-input-placeholder {
-		color: $placeholder-text-color;
-	}
+     :-ms-input-placeholder {
+          color: $placeholder-text-color;
+     }
 }
 
 /* Text inputs */
 form.formalize {
-	input:not([type]),
-	input[type=text],
-	input[type=password],
-	input[type=email],
-	input[type=url],
-	input[type=time],
-	input[type=date],
-	input[type=datetime],
-	input[type=datetime-local],
-	input[type=tel],
-	input[type=number],
-	input[type=search],
-	textarea.formalize-textarea {
+     input:not([type]),
+     input[type=text],
+     input[type=password],
+     input[type=email],
+     input[type=url],
+     input[type=time],
+     input[type=date],
+     input[type=datetime],
+     input[type=datetime-local],
+     input[type=tel],
+     input[type=number],
+     input[type=search],
+     textarea.formalize-textarea {
 
-		// General Styles
-		background-color: transparent;
-		border: none;
-		border-bottom: $input-border;
-		border-radius: 0;
-		outline: none;
-		height: $input-height;
-		width: 100%;
-		font-size: $input-font-size;
-		margin: $input-margin;
-		padding: $input-padding;
-		box-shadow: none;
-		box-sizing: content-box;
-		transition: $input-transition;
+          // General Styles
+          background-color: transparent;
+          border: none;
+          border-bottom: $input-border;
+          border-radius: 0;
+          outline: none;
+          height: $input-height;
+          width: 100%;
+          font-size: $input-font-size;
+          margin: $input-margin;
+          padding: $input-padding;
+          box-shadow: none;
+          box-sizing: content-box;
+          transition: $input-transition;
 
-		// Disabled input style
-		&:disabled,
-		&[readonly="readonly"] {
-			color: $input-disabled-color;
-			border-bottom: $input-disabled-border;
-		}
+          // Disabled input style
+          &:disabled,
+          &[readonly="readonly"] {
+               color: $input-disabled-color;
+               border-bottom: $input-disabled-border;
+          }
 
-		// Disabled label style
-		&:disabled+label,
-		&[readonly="readonly"]+label {
-			color: $input-disabled-color;
-		}
+          // Disabled label style
+          &:disabled+label,
+          &[readonly="readonly"]+label {
+               color: $input-disabled-color;
+          }
 
-		// Focused input style
-		&:focus:not([readonly]) {
-			border-bottom: 1px solid $input-focus-color;
-			box-shadow: 0 1px 0 0 $input-focus-color;
-		}
+          // Focused input style
+          &:focus:not([readonly]) {
+               border-bottom: 1px solid $input-focus-color;
+               box-shadow: 0 1px 0 0 $input-focus-color;
+          }
 
-		// Focused label style
-		&:focus:not([readonly])+label {
-			color: $input-focus-color;
-		}
+          // Focused label style
+          &:focus:not([readonly])+label {
+               color: $input-focus-color;
+          }
 
-		// Valid Input Style
-		&.valid,
-		&:focus.valid {
-			border-bottom: 1px solid $input-success-color;
-			box-shadow: 0 1px 0 0 $input-success-color;
-		}
+          // Valid Input Style
+          &.valid,
+          &:focus.valid {
+               border-bottom: 1px solid $input-success-color;
+               box-shadow: 0 1px 0 0 $input-success-color;
+          }
 
-		// Invalid Input Style
-		&.invalid,
-		&:focus.invalid {
-			border-bottom: $input-invalid-border;
-			box-shadow: 0 1px 0 0 $input-error-color;
-		}
+          // Invalid Input Style
+          &.invalid,
+          &:focus.invalid {
+               border-bottom: $input-invalid-border;
+               box-shadow: 0 1px 0 0 $input-error-color;
+          }
 
-		& ~ .tagInfo, & ~ .tagCount {
-			font-size: 12px;
-			position: relative;
-			top: -15px;
-		}
+          & ~ .tagInfo, & ~ .tagCount {
+               font-size: 12px;
+               position: relative;
+               top: -15px;
+          }
 
-		& ~ .tagCount {
-			float: right;
-		}
+          & ~ .tagCount {
+               float: right;
+          }
 
-		&.valid ~ .tagInfo, &.valid ~ .tagCount {
-			color: $input-success-color;
-		}
+          &.valid ~ .tagInfo, &.valid ~ .tagCount {
+               color: $input-success-color;
+          }
 
-		&.invalid ~ .tagInfo, &.invalid ~ .tagCount {
-			color: $input-error-color;
-		}
-	}
-
-	i.prefix ~ .tagInfo {
-		margin-left: 3rem;
-	}
+          &.invalid ~ .tagInfo, &.invalid ~ .tagCount {
+               color: $input-error-color;
+          }
+     }
 }
 
 // Styling for input field wrapper
 form.formalize {
-	.col {
-		position: relative;
-		margin-top: 1rem;
+     .col {
+          position: relative;
+          margin-top: 1rem;
 
-		label {
-			color: $input-border-color;
-			position: absolute;
-			top: 0.8rem;
-			font-size: 1rem;
-			cursor: text;
-			transition: .2s ease-out;
-		}
+          label {
+               color: $input-border-color;
+               position: absolute;
+               top: 0.8rem;
+               font-size: 1rem;
+               cursor: text;
+               transition: .2s ease-out;
 
-		label.active {
-			font-size: $label-font-size;
-			transform: translateY(-140%);
-		}
+               .frz-char-required {
+                    color: #f00;
+               }
+          }
 
-		// Prefix Icons
-		i.prefix {
-			position: absolute;
-			width: $input-height;
-			font-size: 2rem;
-			transition: color .2s;
-			margin-top: 10px;
+          label.active {
+               font-size: $label-font-size;
+               transform: translateY(-140%);
+          }
 
-			&.active { color: $input-focus-color; }
+          // Prefix Icons
+          i.prefix {
+               position: absolute;
+               width: $input-height;
+               font-size: 2rem;
+               transition: color .2s;
+               margin-top: 10px;
 
-			~ input,
-			~ textarea {
-				padding-left: 3rem;
-				width: 92%;
-				width: calc(100% - 3rem);
-			}
+               &.active { color: $input-focus-color; }
 
-			~ textarea { padding-top: .8rem; }
-			~ label { margin-left: 3rem; }
-		}
+               ~ input,
+               ~ textarea {
+                    padding-left: 3rem;
+                    width: 92%;
+                    width: calc(100% - 3rem);
+               }
 
-		@media #{$medium-and-down} {
-			i.prefix ~ input {
-				width: 86%;
-				width: calc(100% - 3rem);
-			}
-	}
+               ~ textarea { padding-top: .8rem; }
+               ~ label { margin-left: 3rem; }
+          }
 
-	@media #{$small-and-down} {
-		i.prefix ~ input {
-			width: 80%;
-			width: calc(100% - 3rem);
-		}
+          @media #{$medium-and-down} {
+               i.prefix ~ input {
+                    width: 86%;
+                    width: calc(100% - 3rem);
+               }
+     }
+
+     @media #{$small-and-down} {
+          i.prefix ~ input {
+               width: 80%;
+               width: calc(100% - 3rem);
+          }
 }
 
 // Suffix Icons
 i.suffix {
-	position: absolute;
-	right: 0px;
-	width: $input-height;
-	font-size: 2rem;
-	transition: color .2s;
-	margin-top: 10px;
+     position: absolute;
+     right: 0px;
+     width: $input-height;
+     font-size: 2rem;
+     transition: color .2s;
+     margin-top: 10px;
 
-	&.active { color: $input-focus-color; }
+     &.active { color: $input-focus-color; }
 
-	~ input,
-	~ textarea {
-		padding-right: 3rem;
-		width: 92%;
-		width: calc(100% - 3rem);
-	}
+     ~ input,
+     ~ textarea {
+          padding-right: 3rem;
+          width: 92%;
+          width: calc(100% - 3rem);
+     }
 }
 
 i.prefix ~ i.suffix ~ input,
 i.prefix ~ i.suffix ~ textarea {
-	width: 80%;
-	width: calc(100% - 6rem);
+     width: 80%;
+     width: calc(100% - 6rem);
 }
 
-.frm-input-affix {
-	display: table-cell;
-	vertical-align: bottom;
-	position: relative;
+.frz-input-affix {
+     display: table-cell;
+     vertical-align: bottom;
+     position: relative;
 }
 }
 }
 
 /* Search Field */
 form.formalize {
-	.col input[type=search] {
-		display: block;
-		line-height: inherit;
-		padding-left: 4rem;
-		width: calc(100% - 4rem);
+     .col input[type=search] {
+          display: block;
+          line-height: inherit;
+          padding-left: 4rem;
+          width: calc(100% - 4rem);
 
-		&:focus {
-			background-color: $input-background;
-			border: 0;
-			box-shadow: none;
-			color: #444;
+          &:focus {
+               background-color: $input-background;
+               border: 0;
+               box-shadow: none;
+               color: #444;
 
-			& + label i,
-			& ~ .mdi-navigation-close,
-			& ~ .material-icons {
-				color: #444;
-			}
-		}
+               & + label i,
+               & ~ .mdi-navigation-close,
+               & ~ .material-icons {
+                    color: #444;
+               }
+          }
 
-		& + label {
-			left: 1rem;
-		}
+          & + label {
+               left: 1rem;
+          }
 
-		& ~ .mdi-navigation-close,
-		& ~ .material-icons {	
-			position: absolute;
-			top: 0;
-			right: 1rem;
-			color: transparent;
-			cursor: pointer;
-			font-size: 2rem;
-			transition: .3s color;
-		}
-	}
+          & ~ .mdi-navigation-close,
+          & ~ .material-icons {
+               position: absolute;
+               top: 0;
+               right: 1rem;
+               color: transparent;
+               cursor: pointer;
+               font-size: 2rem;
+               transition: .3s color;
+          }
+     }
 }
 
 /* Textarea */
 
 // Default textarea
 form.formalize {
-	textarea {
-		width: 100%;
-		height: $input-height;
-		background-color: transparent;
+     textarea {
+          width: 100%;
+          height: $input-height;
+          background-color: transparent;
 
-		&.formalize-textarea {
-			overflow-y: hidden; /* prevents scroll bar flash */
-			padding: 1.6rem 0; /* prevents text jump on Enter keypress */
-			resize: none;
-			min-height: $input-height;
-		}
-	}
+          &.formalize-textarea {
+               overflow-y: hidden; /* prevents scroll bar flash */
+               padding: 1.6rem 0; /* prevents text jump on Enter keypress */
+               resize: none;
+               min-height: $input-height;
+          }
+     }
 
-	// For textarea autoresize
-	.hiddendiv {
-		display: none;
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
-		padding-top: 1.2rem; /* prevents text jump on Enter keypress */
-	}
+     // For textarea autoresize
+     .hiddendiv {
+          display: none;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
+          padding-top: 1.2rem; /* prevents text jump on Enter keypress */
+     }
 }
